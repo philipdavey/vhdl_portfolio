@@ -18,6 +18,12 @@ PACKAGE aes_pkg IS
                                      x"e1_f8_98_11_69_d9_8e_94_9b_1e_87_e9_ce_55_27_df",  -- 14
                                      x"8c_a1_89_0d_bf_e6_42_68_41_99_2d_0f_b0_54_bb_16"); -- 15
 
+    TYPE GALOIS_FIELD_ARRAY IS ARRAY (0 TO 3) OF STD_LOGIC_VECTOR(31 DOWNTO 0);
+    CONSTANT GALOIS_FIELD : GALOIS_FIELD_ARRAY := (x"02_03_01_01",
+                                                   x"01_02_03_01",
+                                                   x"01_01_02_03",
+                                                   x"03_01_01_02");
+
 END PACKAGE aes_pkg;
 
 PACKAGE BODY aes_pkg IS
