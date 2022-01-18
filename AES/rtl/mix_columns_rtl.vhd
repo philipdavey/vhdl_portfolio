@@ -20,3 +20,25 @@ ENTITY mix_columns IS
         OUTPUT_EN   : OUT STD_LOGIC
     );
 END mix_columns;
+
+ARCHITECTURE arch OF shift_rows IS
+
+    SIGNAL int_input : STD_LOGIC_VECTOR(127 DOWNTO 0);
+
+BEGIN
+
+    int_input <= rows_2_cols(INPUT_DATA);
+
+    PROCESS(CLK, RST_N)
+    BEGIN
+        IF (RST_N = '0') THEN
+
+        ELSIF RISING_EDGE(CLK) THEN
+
+            IF (INPUT_EN = '1') THEN
+
+
+            END IF;
+        END IF;
+    END PROCESS;
+END arch;
