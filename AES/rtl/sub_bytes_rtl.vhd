@@ -30,13 +30,13 @@ BEGIN
     ----------------------------------
     -- SBOX LUT:
     ----------------------------------
-    FOR i IN 0 TO 15 GENERATE
+    sbox_gen_i: FOR i IN 0 TO 15 GENERATE
         USE ENTITY work.sbox_lut
             PORT MAP(
                 INPUT  => INPUT_DATA((i+1)*8-1 DOWNTO i*8),
                 OUTPUT => int_output_data((i+1)*8-1 DOWNTO i*8))
             );
-    END GENERATE;
+    END GENERATE sbox_gen_i;
 
     PROCESS(CLK, RST_N)
     BEGIN

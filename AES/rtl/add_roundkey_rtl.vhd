@@ -21,3 +21,21 @@ ENTITY add_roundkey IS
         OUTPUT_EN   : OUT STD_LOGIC
     );
 END add_roundkey;
+
+ARCHITECTURE arch OF add_roundkey IS
+
+BEGIN
+
+    PROCESS(CLK, RST_N)
+    BEGIN
+        IF (RST_N = '0') THEN
+            OUTPUT_EN   <= '0';
+            OUTPUT_DATA <= (OTHERS => '0');
+        ELSIF RISING_EDGE(CLK) THEN
+            IF (INPUT_EN = '1') THEN
+                OUTPUT_EN   <= '1';    
+                OUTPUT_DATA <= INPUT_DATA XOR ROUND_KEY;
+            END IF;
+        END IF;
+    END PROCESS;
+END arch ;

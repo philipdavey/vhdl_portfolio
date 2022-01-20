@@ -23,11 +23,12 @@ END mix_columns;
 
 ARCHITECTURE arch OF shift_rows IS
 
-    SIGNAL int_input : STD_LOGIC_VECTOR(127 DOWNTO 0);
+    SIGNAL int_input_cols : STD_LOGIC_VECTOR(127 DOWNTO 0);
 
 BEGIN
 
-    int_input <= rows_2_cols(INPUT_DATA);
+    -- Conver Rows into Columns.
+    int_input_cols <= rows_2_cols(INPUT_DATA);
 
     PROCESS(CLK, RST_N)
     BEGIN
@@ -42,3 +43,6 @@ BEGIN
         END IF;
     END PROCESS;
 END arch;
+
+
+-- NEED TO CONVERT COLUMNS INTO ROWS BEFORE BEING OUTPUT!
