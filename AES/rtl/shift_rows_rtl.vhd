@@ -7,7 +7,7 @@ ENTITY shift_rows IS
         -- Clock and Active Low Reset:
         --------------------------------------------------
         CLK         : IN  STD_LOGIC;
-        RST_N       : IN  STD_LOGIC
+        RST_N       : IN  STD_LOGIC;
         --------------------------------------------------
         -- Input Data and Enable:
         --------------------------------------------------
