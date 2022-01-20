@@ -7,7 +7,7 @@ ENTITY sub_bytes IS
         -- Clock and Active Low Reset:
         --------------------------------------------------
         CLK         : IN  STD_LOGIC;
-        RST_N       : IN  STD_LOGIC
+        RST_N       : IN  STD_LOGIC;
         --------------------------------------------------
         -- Input Data and Enable:
         --------------------------------------------------
@@ -31,11 +31,10 @@ BEGIN
     -- SBOX LUT:
     ----------------------------------
     sbox_gen_i: FOR i IN 0 TO 15 GENERATE
-        USE ENTITY work.sbox_lut
+        sbox_lut_i: ENTITY work.sbox_lut
             PORT MAP(
                 INPUT  => INPUT_DATA((i+1)*8-1 DOWNTO i*8),
-                OUTPUT => int_output_data((i+1)*8-1 DOWNTO i*8))
-            );
+                OUTPUT => int_output_data((i+1)*8-1 DOWNTO i*8));
     END GENERATE sbox_gen_i;
 
     PROCESS(CLK, RST_N)

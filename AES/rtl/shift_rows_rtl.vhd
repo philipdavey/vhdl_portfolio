@@ -28,10 +28,12 @@ BEGIN
     BEGIN
         IF (RST_N = '0') THEN
             OUTPUT_DATA <= (OTHERS => '0');
-            OUT_DATA_EN <= '0';
+            OUTPUT_EN <= '0';
         ELSIF RISING_EDGE(CLK) THEN
-            OUT_DATA_EN <= '0';
-            IF (IN_DATA_EN = '1') THEN
+            
+            OUTPUT_EN <= '0';
+
+            IF (INPUT_EN = '1') THEN
                 -- Not Rotated:
                 OUTPUT_DATA(127 DOWNTO 96) <= INPUT_DATA(127 DOWNTO 96);
                 -- Rotate by 1 byte:
@@ -40,7 +42,9 @@ BEGIN
                 OUTPUT_DATA( 63 DOWNTO 32) <= INPUT_DATA( 47 DOWNTO 32) & INPUT_DATA(63 DOWNTO 48);
                 -- Rotate by 3 bytes:
                 OUTPUT_DATA( 31 DOWNTO  0) <= INPUT_DATA(  7 DOWNTO  0) & INPUT_DATA(31 DOWNTO  8);
-                OUT_DATA_EN <= '1';
+
+                OUTPUT_EN <= '1';
+
             END IF;
         END IF;
     END PROCESS;
