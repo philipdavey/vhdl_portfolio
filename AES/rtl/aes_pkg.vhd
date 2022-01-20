@@ -59,7 +59,7 @@ PACKAGE BODY aes_pkg IS
         output_rows( 95 DOWNTO 64) <= input_cols(119 DOWNTO 112) & input_cols(87 DOWNTO 80) & input_cols(55 DOWNTO 48) & input_cols(23 DOWNTO 16);
         output_rows( 63 DOWNTO 32) <= input_cols(111 DOWNTO 104) & input_cols(79 DOWNTO 72) & input_cols(47 DOWNTO 40) & input_cols(15 DOWNTO  8);
         output_rows( 31 DOWNTO  0) <= input_cols(103 DOWNTO  96) & input_cols(71 DOWNTO 64) & input_cols(39 DOWNTO 32) & input_cols( 7 DOWNTO  0);
-    END rows_2_cols;
+    END cols_2_rows;
 
 
 

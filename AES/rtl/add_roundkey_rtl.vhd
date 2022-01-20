@@ -25,7 +25,6 @@ END add_roundkey;
 ARCHITECTURE arch OF add_roundkey IS
 
 BEGIN
-
     PROCESS(CLK, RST_N)
     BEGIN
         IF (RST_N = '0') THEN

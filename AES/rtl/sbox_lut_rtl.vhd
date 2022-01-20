@@ -273,4 +273,4 @@ BEGIN
 			WHEN OTHERS     => OUTPUT <= X"00";
         END CASE;
     END PROCESS;
-end Behavioral;
+end arch;

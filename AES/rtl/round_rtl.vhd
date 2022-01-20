@@ -93,5 +93,4 @@ USE ENTITY work.add_roundkey
         OUTPUT_DATA => OUTPUT_DATA,
         OUTPUT_EN   => OUTPUT_EN
     );    
-
 END arch ;
