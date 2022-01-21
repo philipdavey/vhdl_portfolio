@@ -1,0 +1,8 @@
+Projects for the future:
+
+- AES 128 bit Encryption and Decryption
+
+- Single clock and Dual clock FIFO
+- Processor
+- Protocols: I2C, SPI, UART, PCI, PCIe, SD Card, Ethernet, HDMI, SATA
+- DSP: FIR Filter
