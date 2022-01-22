@@ -67,18 +67,18 @@ shift_rows_i: ENTITY work.shift_rows
         OUTPUT_EN   => shift_rows_out_en
     );
 
--- ----------------------------------
--- -- Mixed Columns:
--- ----------------------------------
--- mix_columns_i: ENTITY work.mix_columns
---     PORT MAP(
---         CLK         => CLK,
---         RST_N       => RST_N,
---         INPUT_DATA  => shift_rows_dout,
---         INPUT_EN    => shift_rows_out_en,
---         OUTPUT_DATA => mix_columns_dout,
---         OUTPUT_EN   => mix_columns_out_en
---     );
+ ----------------------------------
+ -- Mixed Columns:
+ ----------------------------------
+ mix_columns_i: ENTITY work.mix_columns
+     PORT MAP(
+         CLK         => CLK,
+         RST_N       => RST_N,
+         INPUT_DATA  => shift_rows_dout,
+         INPUT_EN    => shift_rows_out_en,
+         OUTPUT_DATA => mix_columns_dout,
+         OUTPUT_EN   => mix_columns_out_en
+     );
 
 ----------------------------------
 -- Add Roundkey:

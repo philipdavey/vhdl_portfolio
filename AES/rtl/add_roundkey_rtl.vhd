@@ -31,6 +31,7 @@ BEGIN
             OUTPUT_EN   <= '0';
             OUTPUT_DATA <= (OTHERS => '0');
         ELSIF RISING_EDGE(CLK) THEN
+            OUTPUT_EN <= '0';
             IF (INPUT_EN = '1') THEN
                 OUTPUT_EN   <= '1';    
                 OUTPUT_DATA <= INPUT_DATA XOR ROUND_KEY;
