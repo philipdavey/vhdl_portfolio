@@ -51,6 +51,10 @@ CONSTANT mix_cols_out   : DATA_ARRAY := (x"04_E0_48_28_66_CB_F8_06_81_19_D3_26_E
 CONSTANT add_rk_out     : DATA_ARRAY := (x"A4_68_6B_02_9C_9F_5B_6A_7F_35_EA_50_F2_2B_43_49",
                                         (OTHERS => '0'));   
 
+-- Externals 
+ALIAS ext_sub_bytes_out_en   IS << SIGNAL .round_tb.UUT.sub_bytes_out_en : STD_LOGIC >>;
+ALIAS ext_sub_bytes_out_data IS << SIGNAL .round_tb.UUT.sub_bytes_dout   : STD_LOGIC_VECTOR(127 DOWNTO 0) >>;
+
 BEGIN
 
     -- UUT Declaration:
@@ -95,6 +99,11 @@ BEGIN
             input_data <= (OTHERS => '0');
             round_key  <= (OTHERS => '0');
             input_en   <= '0';
+            IF (ext_sub_bytes_out_en = '1') THEN
+                IF (ext_sub_bytes_out_data = sub_bytes_out(0)) THEN
+
+                END IF;
+            END IF;
 
             WAIT UNTIL output_en = '1';
             WAIT UNTIL RISING_EDGE(CLK);
@@ -104,18 +113,3 @@ BEGIN
     END PROCESS stim_i;
 
 END arch ;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

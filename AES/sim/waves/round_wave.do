@@ -17,13 +17,15 @@ add wave -noupdate -expand -group {Mix Columns} /round_tb/UUT/mix_columns_i/INPU
 add wave -noupdate -expand -group {Mix Columns} /round_tb/UUT/mix_columns_i/INPUT_DATA
 add wave -noupdate -expand -group {Mix Columns} /round_tb/UUT/mix_columns_i/OUTPUT_EN
 add wave -noupdate -expand -group {Mix Columns} /round_tb/UUT/mix_columns_i/OUTPUT_DATA
+add wave -noupdate -expand -group {Mix Columns} /round_tb/UUT/mix_columns_i/int_input_cols
+add wave -noupdate -expand -group {Mix Columns} /round_tb/UUT/mix_columns_i/int_output
 add wave -noupdate -expand -group {Add Round Key} /round_tb/UUT/add_roundkey_i/INPUT_EN
 add wave -noupdate -expand -group {Add Round Key} /round_tb/UUT/add_roundkey_i/INPUT_DATA
 add wave -noupdate -expand -group {Add Round Key} /round_tb/UUT/add_roundkey_i/ROUND_KEY
 add wave -noupdate -expand -group {Add Round Key} /round_tb/UUT/add_roundkey_i/OUTPUT_EN
 add wave -noupdate -expand -group {Add Round Key} /round_tb/UUT/add_roundkey_i/OUTPUT_DATA
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {74 ns} 0}
+WaveRestoreCursors {{Cursor 1} {735050014 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 198
 configure wave -valuecolwidth 220
@@ -39,4 +41,4 @@ configure wave -griddelta 40
 configure wave -timeline 0
 configure wave -timelineunits ns
 update
-WaveRestoreZoom {73 ns} {126 ns}
+WaveRestoreZoom {41 ns} {138 ns}

@@ -28,8 +28,9 @@ ARCHITECTURE arch OF round IS
 -- Signals Defined:
 ----------------------------------
 -- Sub Bytes:
-SIGNAL sub_bytes_dout     : STD_LOGIC_VECTOR(127 DOWNTO 0);
 SIGNAL sub_bytes_out_en   : STD_LOGIC;
+SIGNAL sub_bytes_dout     : STD_LOGIC_VECTOR(127 DOWNTO 0);
+
 
 -- Shift Rows:
 SIGNAL shift_rows_dout    : STD_LOGIC_VECTOR(127 DOWNTO 0);
