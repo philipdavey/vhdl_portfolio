@@ -35,10 +35,6 @@ ARCHITECTURE arch OF round IS
     SIGNAL shift_rows_out_en  : STD_LOGIC;
     SIGNAL shift_rows_dout    : STD_LOGIC_VECTOR(127 DOWNTO 0);
     
-    -- Mixed Columns:
-    SIGNAL mix_columns_out_en : STD_LOGIC;
-    SIGNAL mix_columns_dout   : STD_LOGIC_VECTOR(127 DOWNTO 0);
-    
     -- Store Round Key:
     SIGNAL store_rk           : STD_LOGIC_VECTOR(127 DOWNTO 0);
 
@@ -93,22 +89,6 @@ BEGIN
         );
 
     ----------------------------------
-    -- Mixed Columns:
-    ----------------------------------
-    mix_columns_i: ENTITY work.mix_columns
-        PORT MAP(
-            -- Clock and Reset:
-            CLK         => CLK,
-            RST_N       => RST_N,
-            -- Input Enable/Data:
-            INPUT_EN    => shift_rows_out_en,
-            INPUT_DATA  => shift_rows_dout,
-            -- Output Enable/Data:
-            OUTPUT_EN   => mix_columns_out_en,
-            OUTPUT_DATA => mix_columns_dout
-        );
-
-    ----------------------------------
     -- Add Roundkey:
     ----------------------------------
     add_roundkey_i: ENTITY work.add_roundkey
@@ -117,8 +97,8 @@ BEGIN
             CLK         => CLK,
             RST_N       => RST_N,
             -- Input Enable/Data/RK:
-            INPUT_EN    => mix_columns_out_en,
-            INPUT_DATA  => mix_columns_dout,
+            INPUT_EN    => shift_rows_out_en,
+            INPUT_DATA  => shift_rows_dout,
             ROUND_KEY   => store_rk,
             -- Output Enable/Data:
             OUTPUT_EN   => OUTPUT_EN,
