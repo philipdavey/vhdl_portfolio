@@ -13,6 +13,7 @@ vcom -work work ../../rtl/round_rtl.vhd
 #  Testbench
 # ############
 
+vcom -work work ../src/tb_pkg.vhd
 vcom -work work ../src/round_tb.vhd
 
 # ############

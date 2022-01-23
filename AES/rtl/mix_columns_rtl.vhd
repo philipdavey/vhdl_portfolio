@@ -43,13 +43,13 @@ ENTITY mix_columns IS
         --------------------------------------------------
         -- Input Data and Enable:
         --------------------------------------------------
-        INPUT_DATA  : IN  STD_LOGIC_VECTOR(127 DOWNTO 0);
         INPUT_EN    : IN  STD_LOGIC;
+        INPUT_DATA  : IN  STD_LOGIC_VECTOR(127 DOWNTO 0);
         --------------------------------------------------
         -- Output Data and Enable:
         --------------------------------------------------
-        OUTPUT_DATA : OUT STD_LOGIC_VECTOR(127 DOWNTO 0);
-        OUTPUT_EN   : OUT STD_LOGIC
+        OUTPUT_EN   : OUT STD_LOGIC;
+        OUTPUT_DATA : OUT STD_LOGIC_VECTOR(127 DOWNTO 0)
     );
 END mix_columns;
 
