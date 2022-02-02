@@ -1,7 +1,7 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 
-ENTITY round IS
+ENTITY final_round IS
     PORT(
         --------------------------------------------------
         -- Clock and Active Low Reset:
@@ -20,9 +20,9 @@ ENTITY round IS
         OUTPUT_EN   : OUT STD_LOGIC;
         OUTPUT_DATA : OUT STD_LOGIC_VECTOR(127 DOWNTO 0)
     );
-END round;
+END final_round;
 
-ARCHITECTURE arch OF round IS
+ARCHITECTURE arch OF final_round IS
 
     ----------------------------------
     -- Signals Defined:
