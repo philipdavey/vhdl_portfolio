@@ -61,7 +61,7 @@ BEGIN
         );
     
     key_schedule_gen_i: FOR i IN 0 TO 8 GENERATE
-        key_schedule_i : ENTITY work.key_schedulE
+        key_schedule_i : ENTITY work.key_schedule
             GENERIC MAP(
                 KEY_SCH_NUM_g => i + 1
             )

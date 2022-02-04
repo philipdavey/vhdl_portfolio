@@ -1,32 +1,9 @@
--- https://www.angelfire.com/biz7/atleast/mix_columns.pdf
+--
 -- 
---  | 02 03 01 01 |   | D4 |
---  | 01 02 03 01 | . | BF | = (02 . D4) + (03 . bf) + (01 . 5d) + (01 . 30)
---  | 01 01 02 03 |   | 5D |
---  | 03 01 01 02 |   | 30 |
---
--- Multiplication by 02:
--- 1. Shift left by 1 bit.
--- 2. XOR with "00011011" (If leftmost bit of original value (before shift) is '1').
---
--- EG: D4 = "11010100"
--- Leftmost bit = '1', therefore:
--- 1. Shift left by 1 = "10101000"
--- 2. "10101000" XOR "00011011" = B3.
---
---
--- Multiplication by 03:
--- 1. Shift left by 1 bit.
--- 2. XOR with original input.
--- 3. XOR with "00011011" (If leftmost bit of original value (before shift) is '1').
---
--- EG: BF = "10111111"
--- 2. Shift left by 1 = "10101000"
--- 3. "10101000" XOR "10111111" XOR "00011011" = DA.
---
--- (02 . D4) + (03 . bf) + (01 . 5d) + (01 . 30) = 
---
--- B3 XOR DA XOR 5D XOR 30 = 04 (Final Answer).
+--  | 0E 0B 0D 09 |
+--  | 09 0E 0B 0D |
+--  | 0D 09 0E 0B |
+--  | 0B 0D 09 0E |
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
@@ -122,3 +99,9 @@ BEGIN
         END IF;
     END PROCESS;
 END arch;
+
+
+(s(31) xor s(14) xor (int_input(111 downto 104))  xor (int_input(103 downto 96)))
+& (s(30) xor s(13) xor int_input(127 downto 120) xor  int_input(103 downto 96))
+& (s(29)  xor s(12) xor  int_input(127 downto 120) xor  int_input(119 downto 112))
+& (s(28) xor s(15) xor  int_input(119 downto 112) xor  int_input(111 downto 104));
