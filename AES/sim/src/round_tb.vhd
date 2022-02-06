@@ -2,6 +2,7 @@ LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 
 USE work.tb_pkg.ALL;
+USE std.env.STOP;
 
 ENTITY round_tb IS
 END ENTITY round_tb;
@@ -97,6 +98,10 @@ BEGIN
         ALIAS ext_mix_columns_out_en IS << SIGNAL .round_tb.UUT.mix_columns_out_en : STD_LOGIC >>;
         ALIAS ext_mix_columns_dout   IS << SIGNAL .round_tb.UUT.mix_columns_dout   : STD_LOGIC_VECTOR(127 DOWNTO 0) >>;
     BEGIN
+        input_en   <= '0';             -- Deassert Input Enable.
+        input_data <= (OTHERS => '0'); -- Reset Input Data.
+        round_key  <= (OTHERS => '0'); -- Reset Round Key.
+
         rst_n <= '0';
         WAIT FOR TIME_PERIOD_c*5;
         rst_n <= '1';
@@ -131,6 +136,12 @@ BEGIN
                 WAIT UNTIL output_en = '1'; -- Wait for Add Round Key.
                 
                 self_check_vector("ADD RK " & to_string(i), output_data, add_rk_out(i)); -- Check Add Round Key.
+
+                WAIT FOR 50 ns;
+
+                report "Calling 'stop'";
+                STOP;
+
             END LOOP;
         END IF;
 

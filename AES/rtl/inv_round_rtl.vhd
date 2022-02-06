@@ -124,4 +124,4 @@ BEGIN
             OUTPUT_EN   => OUTPUT_EN,
             OUTPUT_DATA => OUTPUT_DATA
         );    
-END arch ;
+END arch;

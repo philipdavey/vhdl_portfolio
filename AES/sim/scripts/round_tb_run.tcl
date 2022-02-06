@@ -13,7 +13,7 @@ vcom -2008 -work ../output/work ../../rtl/round_rtl.vhd
 #  Testbench
 # ############
 
-vcom -2008 -work ../output/work ../src/tb_pkg.vhd
+vcom -2008 -work ../output/work ../../../common/tb_pkg.vhd
 vcom -2008 -work ../output/work ../src/round_tb.vhd
 
 # ############
@@ -21,9 +21,6 @@ vcom -2008 -work ../output/work ../src/round_tb.vhd
 # ############
 
 vsim -voptargs=+acc ../output/work.round_tb
-
-#vsim -coverage -vopt ../output/work.round_tb -c -do "coverage save -onexit -directive -codeAll round_tb.ucdb. run -all"
-#vcover report -html ../output/round_tb_cov
  
 # ############
 # Load wave file

@@ -1,7 +1,7 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;
 
-ENTITY shift_rows IS
+ENTITY inv_shift_rows IS
     PORT(
         --------------------------------------------------
         -- Clock and Active Low Reset:
@@ -19,9 +19,9 @@ ENTITY shift_rows IS
         OUTPUT_EN   : OUT STD_LOGIC;
         OUTPUT_DATA : OUT STD_LOGIC_VECTOR(127 DOWNTO 0)     
     );
-END shift_rows;
+END inv_shift_rows;
 
-ARCHITECTURE arch OF shift_rows IS
+ARCHITECTURE arch OF inv_shift_rows IS
 
 BEGIN
     PROCESS(CLK, RST_N)

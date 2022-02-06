@@ -16,7 +16,7 @@ vcom -2008 +cover -work ../output/work ../../rtl/encryption_rtl.vhd
 #  Testbench
 # ############
 
-vcom -2008 +cover -work ../output/work ../src/tb_pkg.vhd
+vcom -2008 -work ../output/work ../../../common/tb_pkg.vhd
 vcom -2008 +cover -work ../output/work ../src/encryption_tb.vhd
 
 # ############

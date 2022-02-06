@@ -10,7 +10,7 @@ USE ieee.std_logic_1164.ALL;
 
 USE work.aes_pkg.ALL;
 
-ENTITY mix_columns IS
+ENTITY inv_mix_columns IS
     PORT(
         --------------------------------------------------
         -- Clock and Active Low Reset:
@@ -28,9 +28,9 @@ ENTITY mix_columns IS
         OUTPUT_EN   : OUT STD_LOGIC;
         OUTPUT_DATA : OUT STD_LOGIC_VECTOR(127 DOWNTO 0)
     );
-END mix_columns;
+END inv_mix_columns;
 
-ARCHITECTURE arch OF mix_columns IS
+ARCHITECTURE arch OF inv_mix_columns IS
 
     -- Calculate 02s:
     FUNCTION calc_02s (input : STD_LOGIC_VECTOR(7 DOWNTO 0))
@@ -45,18 +45,49 @@ ARCHITECTURE arch OF mix_columns IS
         RETURN output;
     END FUNCTION calc_02s;
 
-    -- Calculate 02s:
-    FUNCTION calc_03s (input : STD_LOGIC_VECTOR(7 DOWNTO 0))
+    -- Calculate 09s:
+    FUNCTION calc_09s (input : STD_LOGIC_VECTOR(7 DOWNTO 0))
     RETURN STD_LOGIC_VECTOR IS
         VARIABLE output : STD_LOGIC_VECTOR(7 DOWNTO 0);
     BEGIN
-        IF (input(7) = '1') THEN -- If Leftmost Bit = '1'.
-            output := (input(6 DOWNTO 0) & '0') XOR "00011011" XOR input; -- Shift Left by 1, XOR with "00011011", XOR with input.
-        ELSE
-            output := (input(6 DOWNTO 0) & '0') XOR input; -- Shift Left by 1, XOR with input.
-        END IF;
+
+        output := calc_02s(calc_02s(calc_02s(input))) XOR input;
         RETURN output;
-    END FUNCTION calc_03s;
+
+    END FUNCTION calc_09s;
+
+    -- Calculate 11s:
+    FUNCTION calc_11s (input : STD_LOGIC_VECTOR(7 DOWNTO 0))
+    RETURN STD_LOGIC_VECTOR IS
+        VARIABLE output : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    BEGIN
+
+        output := (calc_02s(calc_02s(calc_02s(input)) XOR input)) XOR input;
+        RETURN output;
+
+    END FUNCTION calc_11s;
+
+    -- Calculate 13s:
+    FUNCTION calc_13s (input : STD_LOGIC_VECTOR(7 DOWNTO 0))
+    RETURN STD_LOGIC_VECTOR IS
+        VARIABLE output : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    BEGIN
+
+        output := calc_02s(calc_02s(calc_02s(input) XOR input)) XOR input;
+        RETURN output;
+
+    END FUNCTION calc_13s;
+
+    -- Calculate 14s:
+    FUNCTION calc_14s (input : STD_LOGIC_VECTOR(7 DOWNTO 0))
+    RETURN STD_LOGIC_VECTOR IS
+        VARIABLE output : STD_LOGIC_VECTOR(7 DOWNTO 0);
+    BEGIN
+
+        output := calc_02s(calc_02s(calc_02s(input) XOR input) XOR input);
+        RETURN output;
+
+    END FUNCTION calc_14s;
 
     -- Calculate Column:
     FUNCTION calc_col (input : STD_LOGIC_VECTOR(31 DOWNTO 0))
@@ -64,10 +95,10 @@ ARCHITECTURE arch OF mix_columns IS
         VARIABLE output : STD_LOGIC_VECTOR(31 DOWNTO 0);
     BEGIN
         -- Loop to calculate each mixed column.
-        output(31 DOWNTO 24) := calc_02s(input(31 DOWNTO 24)) XOR calc_03s(input(23 DOWNTO 16)) XOR          input(15 DOWNTO 8)  XOR          input(7 DOWNTO 0);
-        output(23 DOWNTO 16) :=          input(31 DOWNTO 24)  XOR calc_02s(input(23 DOWNTO 16)) XOR calc_03s(input(15 DOWNTO 8)) XOR          input(7 DOWNTO 0);
-        output(15 DOWNTO  8) :=          input(31 DOWNTO 24)  XOR          input(23 DOWNTO 16)  XOR calc_02s(input(15 DOWNTO 8)) XOR calc_03s(input(7 DOWNTO 0));
-        output( 7 DOWNTO  0) := calc_03s(input(31 DOWNTO 24)) XOR          input(23 DOWNTO 16)  XOR          input(15 DOWNTO 8)  XOR calc_02s(input(7 DOWNTO 0));
+        output(31 DOWNTO 24) := calc_14s(input(31 DOWNTO 24)) XOR calc_11s(input(23 DOWNTO 16)) XOR calc_13s(input(15 DOWNTO 8)) XOR calc_09s(input(7 DOWNTO 0));
+        output(23 DOWNTO 16) := calc_09s(input(31 DOWNTO 24)) XOR calc_14s(input(23 DOWNTO 16)) XOR calc_11s(input(15 DOWNTO 8)) XOR calc_13s(input(7 DOWNTO 0));
+        output(15 DOWNTO  8) := calc_13s(input(31 DOWNTO 24)) XOR calc_09s(input(23 DOWNTO 16)) XOR calc_14s(input(15 DOWNTO 8)) XOR calc_11s(input(7 DOWNTO 0));
+        output( 7 DOWNTO  0) := calc_11s(input(31 DOWNTO 24)) XOR calc_13s(input(23 DOWNTO 16)) XOR calc_09s(input(15 DOWNTO 8)) XOR calc_14s(input(7 DOWNTO 0));
         RETURN output;
     END FUNCTION calc_col;
 
@@ -99,9 +130,3 @@ BEGIN
         END IF;
     END PROCESS;
 END arch;
-
-
-(s(31) xor s(14) xor (int_input(111 downto 104))  xor (int_input(103 downto 96)))
-& (s(30) xor s(13) xor int_input(127 downto 120) xor  int_input(103 downto 96))
-& (s(29)  xor s(12) xor  int_input(127 downto 120) xor  int_input(119 downto 112))
-& (s(28) xor s(15) xor  int_input(119 downto 112) xor  int_input(111 downto 104));
