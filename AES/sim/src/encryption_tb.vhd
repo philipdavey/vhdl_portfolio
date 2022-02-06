@@ -2,6 +2,7 @@ LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 
 USE work.tb_pkg.ALL;
+USE std.env.STOP;
 
 ENTITY encryption_tb IS
 END ENTITY encryption_tb;
@@ -94,6 +95,9 @@ BEGIN
         WAIT FOR TIME_PERIOD_c*5;
         rst_n <= '1';
 
+        input_en <= '0';
+        cipher_key <= (OTHERS => '0');
+
         WAIT UNTIL RISING_EDGE(CLK);
 
         IF (TC_01 = '1') THEN
@@ -115,6 +119,11 @@ BEGIN
             WAIT UNTIL output_en = '1';
     
             self_check_vector("Ciphertext", cipher_text, exp_round_data(10));
+
+            WAIT FOR 50 ns;
+
+            report "Calling 'stop'";
+            STOP;
 
 
         END IF;

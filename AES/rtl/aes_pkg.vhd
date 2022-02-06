@@ -3,23 +3,52 @@ USE ieee.std_logic_1164.ALL;
 
 PACKAGE aes_pkg IS
 
-    TYPE GALOIS_FIELD_ARRAY IS ARRAY (0 TO 3) OF STD_LOGIC_VECTOR(31 DOWNTO 0);
-    CONSTANT GALOIS_FIELD : GALOIS_FIELD_ARRAY := (x"02_03_01_01",
-                                                   x"01_02_03_01",
-                                                   x"01_01_02_03",
-                                                   x"03_01_01_02");
+    FUNCTION gf_8_mult (
+        v1 : IN STD_LOGIC_VECTOR;
+        v2 : IN STD_LOGIC_VECTOR)
+    RETURN STD_LOGIC_VECTOR;
 
     FUNCTION rows_2_cols (
         input_rows  : IN  STD_LOGIC_VECTOR(127 DOWNTO 0))
-        RETURN STD_LOGIC_VECTOR;
+    RETURN STD_LOGIC_VECTOR;
 
     FUNCTION cols_2_rows (
         input_cols  : IN  STD_LOGIC_VECTOR(127 DOWNTO 0))
-        RETURN STD_LOGIC_VECTOR;
+    RETURN STD_LOGIC_VECTOR;
 
 END PACKAGE aes_pkg;
 
 PACKAGE BODY aes_pkg IS
+
+    FUNCTION gf_8_mult (
+        v1 : IN STD_LOGIC_VECTOR;
+        v2 : IN STD_LOGIC_VECTOR)
+    RETURN STD_LOGIC_VECTOR IS
+        CONSTANT m      : INTEGER := 8;
+        VARIABLE dummy  : STD_LOGIC;
+        VARIABLE v_temp : STD_LOGIC_VECTOR(m-1 DOWNTO 0);
+        VARIABLE v_out  : STD_LOGIC_VECTOR(m-1 DOWNTO 0);
+    BEGIN
+        v_temp := (OTHERS => '0');
+        FOR i IN 0 TO m-1 LOOP
+            dummy     := v_temp(7);
+            v_temp(7 ) := v_temp(6 );
+            v_temp(6 ) := v_temp(5 );
+            v_temp(5 ) := v_temp(4 );
+            v_temp(4 ) := v_temp(3 ) xor dummy;
+            v_temp(3 ) := v_temp(2 ) xor dummy;
+            v_temp(2 ) := v_temp(1 ) xor dummy;
+            v_temp(1 ) := v_temp(0 );
+            v_temp(0 ) := dummy;
+
+            FOR j IN 0 TO m-1 LOOP
+                v_temp(j) := v_temp(j) XOR (v1(j) AND v2(m-i-1));
+            END LOOP;
+        END LOOP;
+        
+        v_out := v_temp;
+        RETURN v_out;
+    END gf_8_mult;
 
     FUNCTION rows_2_cols (
         input_rows  : IN  STD_LOGIC_VECTOR(127 DOWNTO 0))
