@@ -1,3 +1,19 @@
+-- ====================================================================
+-- File Name     : inv_round_tb.vhd
+-- Author        : Philip Davey
+-- Design Folder : AES
+-- Date          : February 2022
+-- Rtl/Sim/Pkg   : Sim
+-- --------------------------------------------------------------------
+-- HDL           : VHDL 2008
+-- --------------------------------------------------------------------
+-- Description   :
+--               :
+--               :
+--               :
+--               :
+-- ====================================================================
+
 LIBRARY IEEE;
 USE IEEE.STD_LOGIC_1164.ALL;
 
@@ -35,11 +51,17 @@ SIGNAL output_en   : STD_LOGIC;
 -- Inputs:
 ----------------------------------
 
-CONSTANT data_in        : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"69_C4_E0_D8_6A_7B_04_30_D8_CD_B7_80_70_B4_C5_5A");
+CONSTANT data_in             : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"799CAA0F3E34B7A97603B26C97E9D1CC");
 
-CONSTANT round_key_in   : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"13_11_1D_7F_E3_94_4A_17_F3_07_A7_8B_4D_2B_30_C5");
+CONSTANT round_key_in        : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"D6C24D3EBE09B002BDEA731B0D4980B9");
 
-CONSTANT exp_round_data : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"19_A0_9A_E9_3D_F4_C6_F8_E3_E2_8D_48_BE_2B_2A_08");
+CONSTANT inv_sub_bytes_out   : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"AF1C62FBD12820B70FD53EB885EB5127");
+
+CONSTANT inv_shift_rows_out  : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"AF1C62FBB7D128203EB80FD5EB512785");
+
+CONSTANT inv_mix_columns_out : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"122406512A2A05CC02C8AF72F7E2CE64");
+
+CONSTANT exp_output_data     : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"C4E64B6F9423B5CEBF22DC69FAAB4EDD");
 
 BEGIN
 
@@ -55,8 +77,8 @@ BEGIN
         -- Input Roundkey:
         ROUND_KEY   => round_key,
         -- Output Data/Enable:
-        OUTPUT_DATA => output_data,
-        OUTPUT_EN   => output_en
+        OUTPUT_EN   => output_en,
+        OUTPUT_DATA => output_data
     );
 
     -- Clock Process:
@@ -70,6 +92,20 @@ BEGIN
 
     -- Stimulus Process:
     stim_i: PROCESS
+        ----------------------------------
+        -- -- Externals:
+        ----------------------------------
+        -- Sub Bytes:
+        ALIAS ext_inv_sub_bytes_out_en   IS << SIGNAL .inv_round_tb.UUT.inv_sub_bytes_out_en   : STD_LOGIC >>;
+        ALIAS ext_inv_sub_bytes_dout     IS << SIGNAL .inv_round_tb.UUT.inv_sub_bytes_dout     : STD_LOGIC_VECTOR(127 DOWNTO 0) >>;
+
+        -- Shift Rows:
+        ALIAS ext_inv_shift_rows_out_en  IS << SIGNAL .inv_round_tb.UUT.inv_shift_rows_out_en  : STD_LOGIC >>;
+        ALIAS ext_inv_shift_rows_dout    IS << SIGNAL .inv_round_tb.UUT.inv_shift_rows_dout    : STD_LOGIC_VECTOR(127 DOWNTO 0) >>;
+
+        -- Mixed Columns:
+        ALIAS ext_inv_mix_columns_out_en IS << SIGNAL .inv_round_tb.UUT.inv_mix_columns_out_en : STD_LOGIC >>;
+        ALIAS ext_inv_mix_columns_dout   IS << SIGNAL .inv_round_tb.UUT.inv_mix_columns_dout   : STD_LOGIC_VECTOR(127 DOWNTO 0) >>;
     BEGIN
         input_en   <= '0';             -- Deassert Input Enable.
         input_data <= (OTHERS => '0'); -- Reset Input Data.
@@ -85,8 +121,8 @@ BEGIN
 
             WAIT UNTIL RISING_EDGE(CLK);
 
-            input_en   <= '1';       -- Assert Input Enable.
-            input_data <= data_in;   -- Insert Input data.
+            input_en   <= '1';          -- Assert Input Enable.
+            input_data <= data_in;      -- Insert Input data.
             round_key  <= round_key_in; -- Insert Round Key.
 
             WAIT UNTIL RISING_EDGE(CLK);
@@ -95,17 +131,27 @@ BEGIN
             input_data <= (OTHERS => '0'); -- Reset Input Data.
             round_key  <= (OTHERS => '0'); -- Reset Round Key.
 
-            WAIT UNTIL output_en = '1'; -- Wait for Sub Bytes.
+            WAIT UNTIL ext_inv_sub_bytes_out_en = '1';
 
-            self_check_vector("ROUND OUTPUT", output_data, exp_round_data); -- Check Sub Bytes.
+            self_check_vector("Inverse Sub Bytes OUTPUT", ext_inv_sub_bytes_dout, inv_sub_bytes_out); -- Check Inverse Sub Bytes.
 
-            -- WAIT FOR 50 ns;
+            WAIT UNTIL ext_inv_shift_rows_out_en = '1';
 
-            -- report "Calling 'stop'";
-            -- STOP;
+            self_check_vector("Inverse Shift Rows OUTPUT", ext_inv_shift_rows_dout, inv_shift_rows_out); -- Check Inverse Shift Rows.
+
+            WAIT UNTIL ext_inv_mix_columns_out_en = '1';
+
+            self_check_vector("Inverse Mixed Columns OUTPUT", ext_inv_mix_columns_dout, inv_mix_columns_out); -- Check Inverse Mix Columns.
+
+            WAIT UNTIL output_en = '1';
+
+            self_check_vector("ROUND OUTPUT", output_data, exp_output_data); -- Check Inverse Round output.
+
+            WAIT FOR 50 ns;
+
+            REPORT "Calling 'stop'";
+            STOP;
         END IF;
-
         WAIT;
     END PROCESS stim_i;
-
 END arch ;

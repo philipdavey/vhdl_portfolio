@@ -1,5 +1,5 @@
 -- ====================================================================
--- File Name     : encryption_tb.vhd
+-- File Name     : decryption_tb.vhd
 -- Author        : Philip Davey
 -- Design Folder : AES
 -- Date          : February 2022
@@ -20,10 +20,10 @@ USE IEEE.STD_LOGIC_1164.ALL;
 USE work.tb_pkg.ALL;
 USE std.env.STOP;
 
-ENTITY encryption_tb IS
-END ENTITY encryption_tb;
+ENTITY decryption_tb IS
+END ENTITY decryption_tb;
 
-ARCHITECTURE arch OF encryption_tb IS
+ARCHITECTURE arch OF decryption_tb IS
 ----------------------------------
 -- Testbench Parameters:
 ----------------------------------
@@ -51,7 +51,7 @@ SIGNAL cipher_text : STD_LOGIC_VECTOR(127 DOWNTO 0);
 -- Inputs:
 ----------------------------------
 
-CONSTANT data_in : STD_LOGIC_VECTOR(127 DOWNTO 0) := x"32_88_31_E0_43_5A_31_37_F6_30_98_07_A8_8D_A2_34";
+CONSTANT data_in : STD_LOGIC_VECTOR(127 DOWNTO 0)      := x"32_88_31_E0_43_5A_31_37_F6_30_98_07_A8_8D_A2_34";
 
 CONSTANT round_key_in : STD_LOGIC_VECTOR(127 DOWNTO 0) := x"2B_28_AB_09_7E_AE_F7_CF_15_D2_15_4F_16_A6_88_3C";
 

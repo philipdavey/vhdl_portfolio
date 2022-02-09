@@ -1,32 +1,42 @@
--- https://www.angelfire.com/biz7/atleast/mix_columns.pdf
--- 
---  | 02 03 01 01 |   | D4 |
---  | 01 02 03 01 | . | BF | = (02 . D4) + (03 . bf) + (01 . 5d) + (01 . 30)
---  | 01 01 02 03 |   | 5D |
---  | 03 01 01 02 |   | 30 |
---
--- Multiplication by 02:
--- 1. Shift left by 1 bit.
--- 2. XOR with "00011011" (If leftmost bit of original value (before shift) is '1').
---
--- EG: D4 = "11010100"
--- Leftmost bit = '1', therefore:
--- 1. Shift left by 1 = "10101000"
--- 2. "10101000" XOR "00011011" = B3.
---
---
--- Multiplication by 03:
--- 1. Shift left by 1 bit.
--- 2. XOR with original input.
--- 3. XOR with "00011011" (If leftmost bit of original value (before shift) is '1').
---
--- EG: BF = "10111111"
--- 2. Shift left by 1 = "10101000"
--- 3. "10101000" XOR "10111111" XOR "00011011" = DA.
---
--- (02 . D4) + (03 . bf) + (01 . 5d) + (01 . 30) = 
---
--- B3 XOR DA XOR 5D XOR 30 = 04 (Final Answer).
+-- ====================================================================
+-- File Name     : mix_columns_rtl.vhd
+-- Author        : Philip Davey
+-- Design Folder : AES
+-- Date          : February 2022
+-- Rtl/Sim/Pkg   : RTL
+-- --------------------------------------------------------------------
+-- HDL           : VHDL 2008
+-- --------------------------------------------------------------------
+-- Description   : For more information: https://www.angelfire.com/biz7/atleast/mix_columns.pdf
+--               : Example Calculation:
+--               :  | 02 03 01 01 |   | D4 |
+--               :  | 01 02 03 01 | . | BF | = (02 . D4) + (03 . bf) + (01 . 5d) + (01 . 30)
+--               :  | 01 01 02 03 |   | 5D |
+--               :  | 03 01 01 02 |   | 30 |
+--               : 
+--               :  Multiplication by 02:
+--               :  1. Shift left by 1 bit.
+--               :  2. XOR with "00011011" (If leftmost bit of original value (before shift) is '1').
+--               :
+--               :  EG: D4 = "11010100"
+--               :  Leftmost bit = '1', therefore:
+--               :  1. Shift left by 1 = "10101000"
+--               :  2. "10101000" XOR "00011011" = B3.
+--               :
+--               :  Multiplication by 03:
+--               :  1. Shift left by 1 bit.
+--               :  2. XOR with original input.
+--               :  3. XOR with "00011011" (If leftmost bit of original value (before shift) is '1').
+--               : 
+--               :  EG: BF = "10111111"
+--               :  2. Shift left by 1 = "10101000"
+--               :  3. "10101000" XOR "10111111" XOR "00011011" = DA.
+--               : 
+--               :  (02 . D4) + (03 . bf) + (01 . 5d) + (01 . 30) = 
+--               : 
+--               :  B3 XOR DA XOR 5D XOR 30 = 04 (Final Answer).
+--               :
+-- ====================================================================
 
 LIBRARY ieee;
 USE ieee.std_logic_1164.ALL;

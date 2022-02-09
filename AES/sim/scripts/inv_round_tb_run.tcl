@@ -1,3 +1,16 @@
+# ====================================================================
+# File Name     : inv_round_tb_run.tcl
+# Author        : Philip Davey
+# Design Folder : AES
+# Date          : February 2022
+# --------------------------------------------------------------------
+# Description   :
+#               :
+#               :
+#               :
+#               :
+# ====================================================================
+
 # ############
 #  RTL Files
 # ############
@@ -26,6 +39,6 @@ vsim -voptargs=+acc ../output/work.inv_round_tb
 # Load wave file
 # ############
 
-# do ../waves/round_wave.do
+do ../waves/inv_round_wave.do
 
 run -all
