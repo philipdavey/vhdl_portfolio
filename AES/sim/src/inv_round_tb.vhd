@@ -51,17 +51,17 @@ SIGNAL output_en   : STD_LOGIC;
 -- Inputs:
 ----------------------------------
 
-CONSTANT data_in             : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"799CAA0F3E34B7A97603B26C97E9D1CC");
+CONSTANT data_in             : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"7A892B3DD5EFCA9FFD4E10F5A7270B9F");
 
-CONSTANT round_key_in        : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"D6C24D3EBE09B002BDEA731B0D4980B9");
+CONSTANT round_key_in        : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"54F010BE9985932C3257ED97D1689C4E");
 
-CONSTANT inv_sub_bytes_out   : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"AF1C62FBD12820B70FD53EB885EB5127");
+CONSTANT inv_shift_rows_out  : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"7A892B3D9FD5EFCA10F5FD4E270B9FA7");
 
-CONSTANT inv_shift_rows_out  : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"AF1C62FBB7D128203EB80FD5EB512785");
+CONSTANT inv_sub_bytes_out   : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"BDF20B8B6EB561107C7721B63D9E6E89");
 
-CONSTANT inv_mix_columns_out : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"122406512A2A05CC02C8AF72F7E2CE64");
+CONSTANT add_rk_out          : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"E9021B35F730F23C4E20CC21ECF6F2C7");
 
-CONSTANT exp_output_data     : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"C4E64B6F9423B5CEBF22DC69FAAB4EDD");
+CONSTANT exp_output_data     : STD_LOGIC_VECTOR(127 DOWNTO 0) := (x"546B96A1D9A0BB11909AF470A1B50E2F");
 
 BEGIN
 
@@ -95,17 +95,18 @@ BEGIN
         ----------------------------------
         -- -- Externals:
         ----------------------------------
-        -- Sub Bytes:
+        -- Inverse Shift Rows:
+        ALIAS ext_inv_shift_rows_out_en  IS << SIGNAL .inv_round_tb.UUT.inv_shift_rows_out_en  : STD_LOGIC >>;
+        ALIAS ext_inv_shift_rows_dout    IS << SIGNAL .inv_round_tb.UUT.inv_shift_rows_dout    : STD_LOGIC_VECTOR(127 DOWNTO 0) >>;        
+
+        -- Inverse Sub Bytes:
         ALIAS ext_inv_sub_bytes_out_en   IS << SIGNAL .inv_round_tb.UUT.inv_sub_bytes_out_en   : STD_LOGIC >>;
         ALIAS ext_inv_sub_bytes_dout     IS << SIGNAL .inv_round_tb.UUT.inv_sub_bytes_dout     : STD_LOGIC_VECTOR(127 DOWNTO 0) >>;
 
-        -- Shift Rows:
-        ALIAS ext_inv_shift_rows_out_en  IS << SIGNAL .inv_round_tb.UUT.inv_shift_rows_out_en  : STD_LOGIC >>;
-        ALIAS ext_inv_shift_rows_dout    IS << SIGNAL .inv_round_tb.UUT.inv_shift_rows_dout    : STD_LOGIC_VECTOR(127 DOWNTO 0) >>;
+        -- Add RK
+        ALIAS ext_add_rk_out_en          IS << SIGNAL .inv_round_tb.UUT.add_rk_out_en          : STD_LOGIC >>;
+        ALIAS ext_add_rk_dout            IS << SIGNAL .inv_round_tb.UUT.add_rk_dout            : STD_LOGIC_VECTOR(127 DOWNTO 0) >>;
 
-        -- Mixed Columns:
-        ALIAS ext_inv_mix_columns_out_en IS << SIGNAL .inv_round_tb.UUT.inv_mix_columns_out_en : STD_LOGIC >>;
-        ALIAS ext_inv_mix_columns_dout   IS << SIGNAL .inv_round_tb.UUT.inv_mix_columns_dout   : STD_LOGIC_VECTOR(127 DOWNTO 0) >>;
     BEGIN
         input_en   <= '0';             -- Deassert Input Enable.
         input_data <= (OTHERS => '0'); -- Reset Input Data.
@@ -131,17 +132,17 @@ BEGIN
             input_data <= (OTHERS => '0'); -- Reset Input Data.
             round_key  <= (OTHERS => '0'); -- Reset Round Key.
 
-            WAIT UNTIL ext_inv_sub_bytes_out_en = '1';
-
-            self_check_vector("Inverse Sub Bytes OUTPUT", ext_inv_sub_bytes_dout, inv_sub_bytes_out); -- Check Inverse Sub Bytes.
-
             WAIT UNTIL ext_inv_shift_rows_out_en = '1';
 
             self_check_vector("Inverse Shift Rows OUTPUT", ext_inv_shift_rows_dout, inv_shift_rows_out); -- Check Inverse Shift Rows.
 
-            WAIT UNTIL ext_inv_mix_columns_out_en = '1';
+            WAIT UNTIL ext_inv_sub_bytes_out_en = '1';
 
-            self_check_vector("Inverse Mixed Columns OUTPUT", ext_inv_mix_columns_dout, inv_mix_columns_out); -- Check Inverse Mix Columns.
+            self_check_vector("Inverse Sub Bytes OUTPUT", ext_inv_sub_bytes_dout, inv_sub_bytes_out); -- Check Inverse Sub Bytes.
+
+            WAIT UNTIL ext_add_rk_out_en = '1';
+
+            self_check_vector("Add Round Key OUTPUT", ext_add_rk_dout, add_rk_out); -- Check Add Round Key.
 
             WAIT UNTIL output_en = '1';
 

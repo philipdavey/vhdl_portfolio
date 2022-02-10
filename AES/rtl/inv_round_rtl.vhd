@@ -43,17 +43,17 @@ ARCHITECTURE arch OF inv_round IS
     ----------------------------------
     -- Signals Defined:
     ----------------------------------
-    -- Sub Bytes:
-    SIGNAL inv_sub_bytes_out_en   : STD_LOGIC;
-    SIGNAL inv_sub_bytes_dout     : STD_LOGIC_VECTOR(127 DOWNTO 0);
-
-    -- Shift Rows:
+    -- Inverse Shift Rows:
     SIGNAL inv_shift_rows_out_en  : STD_LOGIC;
     SIGNAL inv_shift_rows_dout    : STD_LOGIC_VECTOR(127 DOWNTO 0);
+
+    -- Inverse Sub Bytes:
+    SIGNAL inv_sub_bytes_out_en   : STD_LOGIC;
+    SIGNAL inv_sub_bytes_dout     : STD_LOGIC_VECTOR(127 DOWNTO 0);
     
     -- Mixed Columns:
-    SIGNAL inv_mix_columns_out_en : STD_LOGIC;
-    SIGNAL inv_mix_columns_dout   : STD_LOGIC_VECTOR(127 DOWNTO 0);
+    SIGNAL add_rk_out_en          : STD_LOGIC;
+    SIGNAL add_rk_dout            : STD_LOGIC_VECTOR(127 DOWNTO 0);
     
     -- Store Round Key:
     SIGNAL store_rk               : STD_LOGIC_VECTOR(127 DOWNTO 0);
@@ -77,9 +77,9 @@ BEGIN
     END PROCESS;
 
     ----------------------------------
-    -- Sub Bytes:
+    -- Inverse Shift Rows:
     ----------------------------------
-    inv_sub_bytes_i: ENTITY work.inv_sub_bytes
+    inv_shift_rows_i: ENTITY work.inv_shift_rows
         PORT MAP(
             -- Clock and Reset:
             CLK         => CLK,
@@ -88,30 +88,14 @@ BEGIN
             INPUT_EN    => INPUT_EN,
             INPUT_DATA  => INPUT_DATA,
             -- Output Enable/Data:
-            OUTPUT_EN   => inv_sub_bytes_out_en,
-            OUTPUT_DATA => inv_sub_bytes_dout
-        );
-
-    ----------------------------------
-    -- Shift Rows:
-    ----------------------------------
-    inv_shift_rows_i: ENTITY work.inv_shift_rows
-        PORT MAP(
-            -- Clock and Reset:
-            CLK         => CLK,
-            RST_N       => RST_N,
-            -- Input Enable/Data:
-            INPUT_EN    => inv_sub_bytes_out_en,
-            INPUT_DATA  => inv_sub_bytes_dout,
-            -- Output Enable/Data:
             OUTPUT_EN   => inv_shift_rows_out_en,
             OUTPUT_DATA => inv_shift_rows_dout
         );
 
     ----------------------------------
-    -- Mixed Columns:
+    -- Inverse Sub Bytes:
     ----------------------------------
-    inv_mix_columns_i: ENTITY work.inv_mix_columns
+    inv_sub_bytes_i: ENTITY work.inv_sub_bytes
         PORT MAP(
             -- Clock and Reset:
             CLK         => CLK,
@@ -120,8 +104,8 @@ BEGIN
             INPUT_EN    => inv_shift_rows_out_en,
             INPUT_DATA  => inv_shift_rows_dout,
             -- Output Enable/Data:
-            OUTPUT_EN   => inv_mix_columns_out_en,
-            OUTPUT_DATA => inv_mix_columns_dout
+            OUTPUT_EN   => inv_sub_bytes_out_en,
+            OUTPUT_DATA => inv_sub_bytes_dout
         );
 
     ----------------------------------
@@ -133,11 +117,27 @@ BEGIN
             CLK         => CLK,
             RST_N       => RST_N,
             -- Input Enable/Data/RK:
-            INPUT_EN    => inv_mix_columns_out_en,
-            INPUT_DATA  => inv_mix_columns_dout,
+            INPUT_EN    => inv_sub_bytes_out_en,
+            INPUT_DATA  => inv_sub_bytes_dout,
             ROUND_KEY   => store_rk,
+            -- Output Enable/Data:
+            OUTPUT_EN   => add_rk_out_en,
+            OUTPUT_DATA => add_rk_dout
+        );  
+
+    ----------------------------------
+    -- Inverse Mixed Columns:
+    ----------------------------------
+    inv_mix_columns_i: ENTITY work.inv_mix_columns
+        PORT MAP(
+            -- Clock and Reset:
+            CLK         => CLK,
+            RST_N       => RST_N,
+            -- Input Enable/Data:
+            INPUT_EN    => add_rk_out_en,
+            INPUT_DATA  => add_rk_dout,
             -- Output Enable/Data:
             OUTPUT_EN   => OUTPUT_EN,
             OUTPUT_DATA => OUTPUT_DATA
-        );    
+        );  
 END arch;

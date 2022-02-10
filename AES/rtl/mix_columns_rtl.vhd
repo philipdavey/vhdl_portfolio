@@ -65,32 +65,6 @@ END mix_columns;
 
 ARCHITECTURE arch OF mix_columns IS
 
-    -- Calculate 02s:
-    FUNCTION calc_02s (input : STD_LOGIC_VECTOR(7 DOWNTO 0))
-    RETURN STD_LOGIC_VECTOR IS
-        VARIABLE output : STD_LOGIC_VECTOR(7 DOWNTO 0);
-    BEGIN
-        IF (input(7) = '1') THEN -- If Leftmost Bit = '1'.
-            output := (input(6 DOWNTO 0) & '0') XOR "00011011"; -- Shift Left by 1, XOR with "00011011".
-        ELSE
-            output := (input(6 DOWNTO 0) & '0'); -- Shift Left by 1.
-        END IF;
-        RETURN output;
-    END FUNCTION calc_02s;
-
-    -- Calculate 02s:
-    FUNCTION calc_03s (input : STD_LOGIC_VECTOR(7 DOWNTO 0))
-    RETURN STD_LOGIC_VECTOR IS
-        VARIABLE output : STD_LOGIC_VECTOR(7 DOWNTO 0);
-    BEGIN
-        IF (input(7) = '1') THEN -- If Leftmost Bit = '1'.
-            output := (input(6 DOWNTO 0) & '0') XOR "00011011" XOR input; -- Shift Left by 1, XOR with "00011011", XOR with input.
-        ELSE
-            output := (input(6 DOWNTO 0) & '0') XOR input; -- Shift Left by 1, XOR with input.
-        END IF;
-        RETURN output;
-    END FUNCTION calc_03s;
-
     -- Calculate Column:
     FUNCTION calc_col (input : STD_LOGIC_VECTOR(31 DOWNTO 0))
     RETURN STD_LOGIC_VECTOR IS
