@@ -7,11 +7,14 @@
 -- --------------------------------------------------------------------
 -- HDL           : VHDL 2008
 -- --------------------------------------------------------------------
--- Description   :
+-- Description   : This is used to perform the Inverse Shift Rows operation.
+--               : This consists of rotating each row by an incrementing
+--               : number of bytes as follows:
 --               :
---               :
---               :
---               :
+--               : Row 0 : Same as original.
+--               : Row 1 : Rotate by 1 byte.
+--               : Row 2 : Rotate by 2 bytes.
+--               : Row 3 : Rotate by 3 bytes.
 -- ====================================================================
 
 LIBRARY ieee;

@@ -7,11 +7,14 @@
 -- --------------------------------------------------------------------
 -- HDL           : VHDL 2008
 -- --------------------------------------------------------------------
--- Description   :
---               :
---               :
---               :
---               :
+-- Description   : The main round of encryption. It performs the following
+--               : calculations:
+--               : 
+--               : 1. sub_bytes
+--               : 2. shift_rows
+--               : 3. mix_columns
+--               : 4. add_roundkey
+--               : 
 -- ====================================================================
 
 LIBRARY ieee;

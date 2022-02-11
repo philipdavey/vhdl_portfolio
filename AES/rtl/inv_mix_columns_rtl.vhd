@@ -7,7 +7,13 @@
 -- --------------------------------------------------------------------
 -- HDL           : VHDL 2008
 -- --------------------------------------------------------------------
--- Description   : | 0E 0B 0D 09 |
+-- Description   : This is used to perform the Inverse Mix Columns operation.
+--               :
+--               : Each column is multiplied in Rijindael's Galois Field
+--               : by a given matrix. In the case of mixed columns, the
+--               : given matrix is:
+--               :
+--               : | 0E 0B 0D 09 |
 --               : | 09 0E 0B 0D |
 --               : | 0D 09 0E 0B |
 --               : | 0B 0D 09 0E |

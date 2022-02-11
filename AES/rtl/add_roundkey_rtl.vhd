@@ -7,10 +7,9 @@
 -- --------------------------------------------------------------------
 -- HDL           : VHDL 2008
 -- --------------------------------------------------------------------
--- Description   :
---               :
---               :
---               :
+-- Description   : This is used to perform the Add Round Key operation.
+--               : This consists of XORing the input data with the round
+--               : key.
 --               :
 -- ====================================================================
 

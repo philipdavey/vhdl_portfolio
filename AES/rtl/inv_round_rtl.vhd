@@ -7,11 +7,14 @@
 -- --------------------------------------------------------------------
 -- HDL           : VHDL 2008
 -- --------------------------------------------------------------------
--- Description   :
---               :
---               :
---               :
---               :
+-- Description   : The main round of decryption. It performs the following
+--               : calculations:
+--               : 
+--               : 1. inv_shift_rows
+--               : 2. inv_sub_bytes
+--               : 3. add_roundkey
+--               : 4. inv_mix_columns
+--               : 
 -- ====================================================================
 
 LIBRARY ieee;

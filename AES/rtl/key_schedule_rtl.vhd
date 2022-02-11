@@ -7,10 +7,19 @@
 -- --------------------------------------------------------------------
 -- HDL           : VHDL 2008
 -- --------------------------------------------------------------------
--- Description   :
+-- Description   : The Key Schedule is used to generate all of the round
+--               : keys required for an encryption/decryption. This process
+--               : is explained below:
 --               :
+--               : 1. Calculate the Rot word: The last column of the
+--               : input key rotated by 1 byte, followed by a Sub Bytes
+--               : transformation.
 --               :
+--               : 2. Rotword XOR the first column of the input key XOR
+--               : the RCON column (depending on generic).
 --               :
+--               : 3. XOR columns of the new round key with the input key
+--               : until the output is generated.
 --               :
 -- ====================================================================
 
@@ -21,7 +30,7 @@ USE work.aes_pkg.ALL;
 
 ENTITY key_schedule IS
     GENERIC(
-        KEY_SCH_NUM_g : INTEGER := 0
+        KEY_SCH_NUM_g : INTEGER := 0 -- Key Schedule number generic. Determines which column of the RCON to use.
     );
     PORT(
         --------------------------------------------------
@@ -55,7 +64,10 @@ ARCHITECTURE arch OF key_schedule IS
     TYPE rcon_array IS ARRAY (0 TO 9) OF STD_LOGIC_VECTOR(7 DOWNTO 0);
     SIGNAL rcon             : rcon_array := (x"01", x"02", x"04", x"08", x"10", x"20", x"40", x"80", x"1B", x"36");
 
+    -- Roundkey output.
     SIGNAL roundkey         : STD_LOGIC_VECTOR(127 DOWNTO 0);
+    
+    -- Roundkey output converted from columns to rows.
     SIGNAL roundkey_rows    : STD_LOGIC_VECTOR(127 DOWNTO 0);
 
 BEGIN
@@ -63,7 +75,7 @@ BEGIN
     -- Convert rows to columns.
     cipher_key_cols <= rows_2_cols(CIPHER_KEY);
 
-    -- Calculate rotword.
+    -- Rotate rotword by 1 byte.
     rotword <= cipher_key_cols(23 DOWNTO 0) & cipher_key_cols(31 DOWNTO 24);
 
     -- Perform subbytes on rotword.

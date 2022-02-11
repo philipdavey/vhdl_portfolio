@@ -7,10 +7,10 @@
 -- --------------------------------------------------------------------
 -- HDL           : VHDL 2008
 -- --------------------------------------------------------------------
--- Description   :
+-- Description   : Testbench for encryption_rtl.vhd.
 --               :
---               :
---               :
+--               : Inputs Plaintext and Cipherkey, checks the output of
+--               : each round and the Ciphertext.
 --               :
 -- ====================================================================
 

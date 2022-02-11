@@ -7,11 +7,13 @@
 -- --------------------------------------------------------------------
 -- HDL           : VHDL 2008
 -- --------------------------------------------------------------------
--- Description   :
+-- Description   : The decryption top level. It performs the following
 --               :
---               :
---               :
---               :
+--               : - Key Schedule Expansion
+--               : 
+--               : 1. Initial inverse round.
+--               : 2. 9 Main Inverse rounds.
+--               : 3. Inverse Final round.
 -- ====================================================================
 
 LIBRARY ieee;
@@ -30,13 +32,14 @@ ENTITY decryption IS
         -- Enable, Input Data and Cipher Key:
         --------------------------------------------------
         INPUT_EN    : IN  STD_LOGIC;
-        PLAIN_TEXT  : IN  STD_LOGIC_VECTOR(127 DOWNTO 0);
+        CIPHER_TEXT : IN  STD_LOGIC_VECTOR(127 DOWNTO 0);
         CIPHER_KEY  : IN  STD_LOGIC_VECTOR(127 DOWNTO 0);
         --------------------------------------------------
         -- Output Data and Enable:
         --------------------------------------------------
         OUTPUT_EN   : OUT STD_LOGIC;
-        CIPHER_TEXT : OUT STD_LOGIC_VECTOR(127 DOWNTO 0)
+        PLAIN_TEXT  : OUT STD_LOGIC_VECTOR(127 DOWNTO 0)
+        
     );
 END decryption;
 
@@ -64,8 +67,8 @@ ARCHITECTURE arch OF decryption IS
     SIGNAL inv_round_data : round_data_array;
 
     -- Stored Decryption input:
-    SIGNAL int_plain_text : STD_LOGIC_VECTOR(127 DOWNTO 0);
-    SIGNAL init_round_en  : STD_LOGIC;
+    SIGNAL int_cipher_text : STD_LOGIC_VECTOR(127 DOWNTO 0);
+    SIGNAL init_round_en   : STD_LOGIC;
 
 BEGIN
 
@@ -126,11 +129,11 @@ BEGIN
     PROCESS(CLK, RST_N)
     BEGIN
         IF (RST_N = '0') THEN
-            int_plain_text <= (OTHERS => '0');
+            int_cipher_text <= (OTHERS => '0');
             init_round_en  <= '0';
         ELSIF RISING_EDGE(CLK) THEN
             IF (INPUT_EN = '1') THEN
-                int_plain_text <= PLAIN_TEXT;
+                int_cipher_text <= CIPHER_TEXT;
             END IF;
             
             IF (key_sch_output_en(9) = '1') THEN
@@ -152,7 +155,7 @@ BEGIN
             RST_N       => RST_N,
             -- Input Enable/Data/RK:
             INPUT_EN    => init_round_en,
-            INPUT_DATA  => int_plain_text,
+            INPUT_DATA  => int_cipher_text,
             ROUND_KEY   => round_key(10),
             -- Output Enable/Data:
             OUTPUT_EN   => inv_round_en(0),
@@ -192,7 +195,7 @@ BEGIN
         ROUND_KEY   => round_key(0),
         -- Output Enable/Data:
         OUTPUT_EN   => OUTPUT_EN,
-        OUTPUT_DATA => CIPHER_TEXT
+        OUTPUT_DATA => PLAIN_TEXT
     );
 
 END arch;

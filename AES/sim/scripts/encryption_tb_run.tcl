@@ -4,10 +4,9 @@
 # Design Folder : AES
 # Date          : February 2022
 # --------------------------------------------------------------------
-# Description   :
-#               :
-#               :
-#               :
+# Description   : Script used to compile all files required for
+#               : encryption_tb.vhd. Runs simulation and imports encryption
+#               : wave.do file.
 #               :
 # ====================================================================
 
@@ -37,11 +36,6 @@ vcom -2008 +cover -work ../output/work ../src/encryption_tb.vhd
 # ############
 
 vsim -voptargs=+acc ../output/work.encryption_tb
-
-# vsim -coverage -vopt ../output/work.encryption_tb -c -do "coverage save -onexit -directive -codeAll encryption_cov; run -all;"
-
-# vsim -coverage ../output/work.encryption_tb
-
  
 # ############
 # Load wave file
@@ -50,9 +44,3 @@ vsim -voptargs=+acc ../output/work.encryption_tb
 do ../waves/encryption_tb_wave.do
 
 run -all
-
-# vcover report -html ../output/coverage encryption_cov
-
-# coverage report -output ../output/coverage report.txt -srcfile=* -assert -directive -cvg -codeAll
-
-# coverage report -html -output ../output encryption_cov -assert -directive

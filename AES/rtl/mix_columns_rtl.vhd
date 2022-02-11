@@ -7,8 +7,17 @@
 -- --------------------------------------------------------------------
 -- HDL           : VHDL 2008
 -- --------------------------------------------------------------------
--- Description   : For more information: https://www.angelfire.com/biz7/atleast/mix_columns.pdf
+-- Description   : This is used to perform the Mix Columns operation.
+--               : Each column is multiplied in Rijindael's Galois Field
+--               : by a given matrix. In the case of mixed columns, the
+--               : given matrix is:
+--               : | 02 03 01 01 |
+--               : | 01 02 03 01 |
+--               : | 01 01 02 03 |
+--               : | 03 01 01 02 |
+--               :
 --               : Example Calculation:
+--               :
 --               :  | 02 03 01 01 |   | D4 |
 --               :  | 01 02 03 01 | . | BF | = (02 . D4) + (03 . bf) + (01 . 5d) + (01 . 30)
 --               :  | 01 01 02 03 |   | 5D |
@@ -18,7 +27,7 @@
 --               :  1. Shift left by 1 bit.
 --               :  2. XOR with "00011011" (If leftmost bit of original value (before shift) is '1').
 --               :
---               :  EG: D4 = "11010100"
+--               :  Eg: D4 = "11010100"
 --               :  Leftmost bit = '1', therefore:
 --               :  1. Shift left by 1 = "10101000"
 --               :  2. "10101000" XOR "00011011" = B3.
@@ -28,7 +37,7 @@
 --               :  2. XOR with original input.
 --               :  3. XOR with "00011011" (If leftmost bit of original value (before shift) is '1').
 --               : 
---               :  EG: BF = "10111111"
+--               :  Eg: BF = "10111111"
 --               :  2. Shift left by 1 = "10101000"
 --               :  3. "10101000" XOR "10111111" XOR "00011011" = DA.
 --               : 

@@ -7,10 +7,10 @@
 -- --------------------------------------------------------------------
 -- HDL           : VHDL 2008
 -- --------------------------------------------------------------------
--- Description   :
---               :
---               :
---               :
+-- Description   : This is used to perform the Sub Bytes operation.
+--               : This consists of replacing each 16 bytes of data from
+--               : the input with a byte from a fixed lookup table, the
+--               : Sbox.
 --               :
 -- ====================================================================
 
@@ -59,7 +59,7 @@ BEGIN
             OUTPUT_DATA <= (OTHERS => '0');
             OUTPUT_EN   <= '0';
         ELSIF RISING_EDGE(CLK) THEN
-            IF (INPUT_EN = '1') THEN
+            IF (INPUT_EN = '1') THEN -- If input enable asserted, set output data to manipulated data.
                 OUTPUT_DATA <= int_output_data;
                 OUTPUT_EN   <= '1';
             ELSE

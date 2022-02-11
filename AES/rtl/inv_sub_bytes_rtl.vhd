@@ -7,10 +7,10 @@
 -- --------------------------------------------------------------------
 -- HDL           : VHDL 2008
 -- --------------------------------------------------------------------
--- Description   :
---               :
---               :
---               :
+-- Description   : This is used to perform the Inverse Sub Bytes operation.
+--               : This consists of replacing each 16 bytes of data from
+--               : the input with a byte from a fixed lookup table, the
+--               : Inverse Sbox.
 --               :
 -- ====================================================================
 

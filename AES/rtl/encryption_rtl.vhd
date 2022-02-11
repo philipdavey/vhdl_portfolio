@@ -7,11 +7,13 @@
 -- --------------------------------------------------------------------
 -- HDL           : VHDL 2008
 -- --------------------------------------------------------------------
--- Description   :
+-- Description   : The encryption top level. It performs the following
 --               :
---               :
---               :
---               :
+--               : - Key Schedule Expansion
+--               : 
+--               : 1. Initial round.
+--               : 2. 9 Main rounds.
+--               : 3. Final round.
 -- ====================================================================
 
 LIBRARY ieee;

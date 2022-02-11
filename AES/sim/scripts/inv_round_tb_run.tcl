@@ -4,10 +4,9 @@
 # Design Folder : AES
 # Date          : February 2022
 # --------------------------------------------------------------------
-# Description   :
-#               :
-#               :
-#               :
+# Description   : Script used to compile all files required for
+#               : inv_round_tb.vhd. Runs simulation and imports inv_round
+#               : wave.do file.
 #               :
 # ====================================================================
 

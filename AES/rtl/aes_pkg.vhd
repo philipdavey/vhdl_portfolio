@@ -7,10 +7,12 @@
 -- --------------------------------------------------------------------
 -- HDL           : VHDL 2008
 -- --------------------------------------------------------------------
--- Description   :
+-- Description   : Package for use in the AES 128 bit encryption and
+--               : decryption.
 --               :
---               :
---               :
+--               : Contains gf multiplication for mix columns/ inverse
+--               : mix columns, as well as functions for converting between
+--               : rows and columns.
 --               :
 -- ====================================================================
 

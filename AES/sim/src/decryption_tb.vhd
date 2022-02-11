@@ -7,10 +7,10 @@
 -- --------------------------------------------------------------------
 -- HDL           : VHDL 2008
 -- --------------------------------------------------------------------
--- Description   :
+-- Description   : Testbench for decryption_rtl.vhd.
 --               :
---               :
---               :
+--               : Inputs Ciphertext and Cipherkey, checks the output of
+--               : each round and the Plaintext.
 --               :
 -- ====================================================================
 
@@ -29,8 +29,8 @@ ARCHITECTURE arch OF decryption_tb IS
 ----------------------------------
 CONSTANT TIME_PERIOD_c : time := 10 ns;
 
-CONSTANT TC_01         : STD_LOGIC := '1';
-CONSTANT TC_02         : STD_LOGIC := '0';
+CONSTANT TC_01     : STD_LOGIC := '1';
+CONSTANT TC_02     : STD_LOGIC := '0';
 
 ----------------------------------
 -- UUT Signals Defined:
@@ -40,12 +40,12 @@ SIGNAL clk         : STD_LOGIC;
 SIGNAL rst_n       : STD_LOGIC;
 -- Input data/en:
 SIGNAL input_en    : STD_LOGIC;
-SIGNAL plain_text  : STD_LOGIC_VECTOR(127 DOWNTO 0);
+SIGNAL cipher_text : STD_LOGIC_VECTOR(127 DOWNTO 0);
 -- Roundkey:
 SIGNAL cipher_key  : STD_LOGIC_VECTOR(127 DOWNTO 0);
 -- Output data/en:
 SIGNAL output_en   : STD_LOGIC;
-SIGNAL cipher_text : STD_LOGIC_VECTOR(127 DOWNTO 0);
+SIGNAL plain_text  : STD_LOGIC_VECTOR(127 DOWNTO 0);
 
 ----------------------------------
 -- Inputs:
@@ -79,12 +79,12 @@ BEGIN
         RST_N       => rst_n,
         -- Input Data/Enable:
         INPUT_EN    => input_en,
-        PLAIN_TEXT  => plain_text,
+        CIPHER_TEXT => cipher_text,
         -- Cipher Key:
         CIPHER_KEY  => cipher_key,
         -- Output Data/Enable:
         OUTPUT_EN   => output_en,
-        CIPHER_TEXT => cipher_text
+        PLAIN_TEXT  => plain_text
     );
 
     -- Clock Process:
@@ -118,13 +118,13 @@ BEGIN
 
         IF (TC_01 = '1') THEN
             WAIT UNTIL RISING_EDGE(CLK);
-            input_en   <= '1';          -- Assert Input Enable.
-            plain_text <= data_in;      -- Input Plain Text.
-            cipher_key <= round_key_in; -- Input Cipher Key.
+            input_en    <= '1';          -- Assert Input Enable.
+            cipher_text <= data_in;      -- Input Plain Text.
+            cipher_key  <= round_key_in; -- Input Cipher Key.
             WAIT UNTIL RISING_EDGE(CLK);
-            input_en   <= '0';
-            plain_text <= (OTHERS => '0');
-            cipher_key <= (OTHERS => '0');
+            input_en    <= '0';
+            cipher_text <= (OTHERS => '0');
+            cipher_key  <= (OTHERS => '0');
 
             FOR i IN exp_round_data'LOW TO exp_round_data'HIGH -1 LOOP
                 WAIT UNTIL ext_inv_round_en(i) = '1';
@@ -134,7 +134,7 @@ BEGIN
 
             WAIT UNTIL output_en = '1';
     
-            self_check_vector("Ciphertext", cipher_text, exp_round_data(10));
+            self_check_vector("Plain Text", plain_text, exp_round_data(10));
 
             WAIT FOR 50 ns;
 
