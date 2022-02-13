@@ -18,6 +18,8 @@ The AES algorithm uses a series of iterations to encrypt the plaintext into a ci
 
 #### Encryption:
 
+![Encryption Block Diagram:](docs/diagrams/encryption.png)
+
 #### Decryption:
 
 
