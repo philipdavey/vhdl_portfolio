@@ -21,6 +21,7 @@ For each main round, there are 4 unique transformations: Sub-byte, Shift row, Mi
 - Shift Rows: Each row of the input is rotated by an incrementing number of bytes.
 
 - Mix Columns: Each column of the input is multiplied in Rijindael's Galois Field by the following matrix:
+
 | 02 03 01 01 |
 | 01 02 03 01 |
 | 01 01 02 03 |
@@ -53,6 +54,7 @@ The Inverse Main Round uses the inverse of the transformations in the Encryption
 - Inverse Shift Rows: Each row of the input is rotated by an incrementing number of bytes.
 
 - Inverse Mix Columns: Each column of the input is multiplied in Rijindael's Galois Field by the following matrix:
+
 | 0E 0B 0D 09 |
 | 09 0E 0B 0D |
 | 0D 09 0E 0B |
