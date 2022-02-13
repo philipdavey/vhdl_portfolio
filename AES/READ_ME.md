@@ -1,20 +1,20 @@
 # VHDL Implementation of AES-128: Encryption and Decryption
 
-### What is AES?
+## What is AES?
 
-The Advanced Encryption Standard (AES) is a cryptographic algorithm used to encrypt and decrypt information. An encryption algorithm transforms the plaintext (original data before encryption) into a ciphertext (an unintelligble form of data), which can only be accessed using a cipher key. In the AES algorithm, the encryption and decryption stages use the same cipher key because it is a symmetric block cipher. For this implementation, both the length of the data input and the cipher key are set to 128 bits.
+The Advanced Encryption Standard (AES) is a cryptographic algorithm used to encrypt and decrypt information. An encryption algorithm transforms the **plaintext** (original data before encryption) into a **ciphertext** (an unintelligble form of data), which can only be accessed using a **cipher key**. In the AES algorithm, the encryption and decryption stages use the same cipher key because it is a symmetric block cipher. For this implementation, both the length of the data input and the cipher key are set to 128 bits.
 
 #### Round:
 
 The AES algorithm uses a series of iterations to encrypt the plaintext into a ciphertext (and vice versa). These are known as rounds. The next stage of the AES algorithm is determined by the output of the previous round. For each round, there are 4 unique transformations: Sub-byte, Shift row, Mix Column and Add Round Key. A brief explanation of these can be seen below:
 
-- Sub-Byte: The s-box is used to substitute each byte. Doing this operation makes it extremely difficult to find the cipher key from a familiar cipher text.
+- Sub-Byte: Each byte of data is substitured with a byte from a fixed lookup table, the Sbox.
 
-- Shift Row: This receives the data in the state matrix and each data block is shifted left by one, two and three hex values respectively.
+- Shift Row: Each row of the input is rotated by an incrementing number of bytes.
 
-- Mix Column: An array is generated to calculate the multiples of 2’s and 3’s in the Galois fields and the relative output are xored to produce each column.
+- Mix Column: Each column of the input is multiplied in Rijindael's Galois Field by a given matrix.
 
-- Add Round Key: The output from the mixed column is bit by bit XOR-ed with a unique round key.
+- Add Round Key: The input is XOR-ed with a unique round key. The Key Schedule is used to expand the cipher key to generate seperate round keys, which are needed to perform this function.
 
 #### Encryption:
 
