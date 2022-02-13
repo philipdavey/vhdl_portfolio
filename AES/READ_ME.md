@@ -23,8 +23,11 @@ For each main round, there are 4 unique transformations: Sub-byte, Shift row, Mi
 - Mix Columns: Each column of the input is multiplied in Rijindael's Galois Field by the following matrix:
 
 | 02 03 01 01 |
+
 | 01 02 03 01 |
+
 | 01 01 02 03 |
+
 | 03 01 01 02 |
 
 - Add Round Key: The input is XOR-ed with a unique round key. The Key Schedule is used to expand the cipher key to generate seperate round keys, which are needed to perform this function.
@@ -56,8 +59,11 @@ The Inverse Main Round uses the inverse of the transformations in the Encryption
 - Inverse Mix Columns: Each column of the input is multiplied in Rijindael's Galois Field by the following matrix:
 
 | 0E 0B 0D 09 |
+
 | 09 0E 0B 0D |
+
 | 0D 09 0E 0B |
+
 | 0B 0D 09 0E |
 
 - Add Round Key: The input is XOR-ed with a unique round key. The Key Schedule is used to expand the cipher key to generate seperate round keys, which are needed to perform this function.
