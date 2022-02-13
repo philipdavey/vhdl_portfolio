@@ -2,15 +2,15 @@
 
 ## What is AES?
 
-The Advanced Encryption Standard (AES) is a cryptographic algorithm used to encrypt and decrypt information. An encryption algorithm transforms the **plaintext** (original data before encryption) into a **ciphertext** (an unintelligble form of data), which can only be accessed using a **cipher key**. In the AES algorithm, the encryption and decryption stages use the same cipher key because it is a symmetric block cipher. For this implementation, both the length of the data input and the cipher key are set to 128 bits.
+The Advanced Encryption Standard (AES) is a cryptographic algorithm used to encrypt and decrypt information. An encryption algorithm transforms the **Plaintext** (original data before encryption) into a **Ciphertext** (an unintelligble form of data), which can only be accessed using a **Cipher Key**. In the AES algorithm, the encryption and decryption stages use the same cipher key because it is a symmetric block cipher. For this implementation, both the length of the data input and the cipher key are set to 128 bits.
 
 ## Encryption:
 
-The AES algorithm uses a series of iterations to encrypt the plaintext into a ciphertext. These are known as rounds. The next stage of the AES algorithm is determined by the output of the previous round. Descriptions of the various rounds can be seen below:
+The AES algorithm uses a series of iterations to encrypt the Plaintext into a Ciphertext. These are known as rounds. The next stage of the AES algorithm is determined by the output of the previous round. Descriptions of the various rounds can be seen below:
 
 #### Initial Round:
 
-The Initial round is the Add Round Key only, and takes the plaintext and ciphertext as inputs. The output of the initial round is mapped to the input of the first main round.
+The Initial round is the Add Round Key only, and takes the Plaintext and Cipher Key as inputs. The output of the initial round is mapped to the input of the first main round.
 
 #### Main Round:
 
@@ -26,7 +26,7 @@ For each main round, there are 4 unique transformations: Sub-byte, Shift row, Mi
 
 #### Final Round:
 
-The Final Round consists of the Sub Bytes, Shift Rows and Add Round Key operations. The Final Round outputs the Ciphertext.
+The Final Round consists of the Sub Bytes, Shift Rows and Add Round Key operations only. The Final Round outputs the Ciphertext.
 
 #### Block Diagram:
 
@@ -34,7 +34,7 @@ The Final Round consists of the Sub Bytes, Shift Rows and Add Round Key operatio
 
 ## Decryption:
 
-This process decrypts the ciphertext back into its original plaintext. The Decryption process uses the inverse operations of those mentioned in Encryption. The Round Keys are also used in an opposite order to that of Encryption. Descriptions of the various rounds used during Decryption can be seen below:
+This process decrypts the Ciphertext back into its original Plaintext. The inverse operations of those mentioned in Encryption are used, and the order of the Round Keys are reversed. Descriptions of the various rounds used during Decryption can be seen below:
 
 #### Inverse Initial Round:
 
@@ -51,7 +51,7 @@ The Inverse Main Round uses the inverse of the transformations in the Encryption
 
 #### Inverse Final Round:
 
-The Inverse Final Round consists of the Inverse Sub Bytes, Inverse Shift Rows and Add Round Key operations. The Inverse Final Round outputs the Plaintext.
+The Inverse Final Round consists of the Inverse Sub Bytes, Inverse Shift Rows and Add Round Key operations only. The Inverse Final Round outputs the Plaintext.
 
 #### Block Diagram:
 
