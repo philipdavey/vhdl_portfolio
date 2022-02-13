@@ -20,11 +20,12 @@ o-quiet -auto_acc_if_foreign -work ../output/work +acc
 tCvgOpt 0
 n@_opt
 OL;O;2021.1;73
+R0
 Eadd_roundkey
 Z1 w1644582519
 Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
 Z3 DPx4 ieee 14 std_logic_1164 0 22 cVAk:aDinOX8^VGI1ekP<3
-!i122 5
+!i122 41
 R0
 Z4 8../../rtl/add_roundkey_rtl.vhd
 Z5 F../../rtl/add_roundkey_rtl.vhd
@@ -34,9 +35,9 @@ V[hMUPXh^mkE8@DGPb[>d>3
 !s100 hIF1GL1dm0`RAk_`R6fST2
 Z6 OL;C;2021.1;73
 33
-Z7 !s110 1644756017
+Z7 !s110 1644757723
 !i10b 1
-Z8 !s108 1644756017.000000
+Z8 !s108 1644757723.000000
 Z9 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../../rtl/add_roundkey_rtl.vhd|
 Z10 !s107 ../../rtl/add_roundkey_rtl.vhd|
 !i113 0
@@ -47,7 +48,7 @@ Aarch
 R2
 R3
 Z14 DEx4 work 12 add_roundkey 0 22 [hMUPXh^mkE8@DGPb[>d>3
-!i122 5
+!i122 41
 l42
 L40 17
 V:@O^M?hma6i=@0<V3>Q<c1
@@ -66,7 +67,7 @@ R13
 Paes_pkg
 R2
 R3
-!i122 0
+!i122 36
 Z15 w1644582472
 R0
 Z16 8../../rtl/aes_pkg.vhd
@@ -80,18 +81,18 @@ R6
 b1
 R7
 !i10b 1
-Z19 !s108 1644756016.000000
-Z20 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../../rtl/aes_pkg.vhd|
-Z21 !s107 ../../rtl/aes_pkg.vhd|
+R8
+Z19 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../../rtl/aes_pkg.vhd|
+Z20 !s107 ../../rtl/aes_pkg.vhd|
 !i113 0
 R11
 R12
 R13
 Bbody
-Z22 DPx4 work 7 aes_pkg 0 22 2CVjb:[F>h_BJVf`3gT441
+Z21 DPx4 work 7 aes_pkg 0 22 2CVjb:[F>h_BJVf`3gT441
 R2
 R3
-!i122 0
+!i122 36
 l0
 L72 1
 V`nzT7TOM0JQnI2JQf?O@=2
@@ -100,22 +101,22 @@ R6
 33
 R7
 !i10b 1
+R8
 R19
 R20
-R21
 !i113 0
 R11
 R12
 R13
 Eencryption
-Z23 w1644581458
-R22
+Z22 w1644581458
+R21
 R2
 R3
-!i122 9
+!i122 45
 R0
-Z24 8../../rtl/encryption_rtl.vhd
-Z25 F../../rtl/encryption_rtl.vhd
+Z23 8../../rtl/encryption_rtl.vhd
+Z24 F../../rtl/encryption_rtl.vhd
 l0
 L24 1
 V>=>X:6^:D>V:MbU[1BE:L0
@@ -125,22 +126,22 @@ R6
 R7
 !i10b 1
 R8
-Z26 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../../rtl/encryption_rtl.vhd|
-Z27 !s107 ../../rtl/encryption_rtl.vhd|
+Z25 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../../rtl/encryption_rtl.vhd|
+Z26 !s107 ../../rtl/encryption_rtl.vhd|
 !i113 0
 R11
 R12
 R13
 Aarch
-Z28 DEx4 work 11 final_round 0 22 zna]eLk:lI4lY0DLCLI<60
-Z29 DEx4 work 5 round 0 22 B]`2b]CCF6MknIMRJT56l3
+Z27 DEx4 work 11 final_round 0 22 zna]eLk:lI4lY0DLCLI<60
+Z28 DEx4 work 5 round 0 22 B]`2b]CCF6MknIMRJT56l3
 R14
-Z30 DEx4 work 12 key_schedule 0 22 0WRhmjj_fH5iM[LG_D:i;1
-R22
+Z29 DEx4 work 12 key_schedule 0 22 0WRhmjj_fH5iM[LG_D:i;1
+R21
 R2
 R3
-Z31 DEx4 work 10 encryption 0 22 >=>X:6^:D>V:MbU[1BE:L0
-!i122 9
+Z30 DEx4 work 10 encryption 0 22 >=>X:6^:D>V:MbU[1BE:L0
+!i122 45
 l60
 L45 108
 VT[4L=eNF7D^2V9`kd`zP70
@@ -150,24 +151,24 @@ R6
 R7
 !i10b 1
 R8
+R25
 R26
-R27
 !i113 0
 R11
 R12
 R13
 Eencryption_tb
-Z32 w1644583947
-Z33 DPx3 std 3 env 0 22 d?`1ck@NdeD@H3RZG7FgZ2
-Z34 DPx4 work 6 tb_pkg 0 22 UZ]o`?T@ABLMiJM0gh^U;2
+Z31 w1644583947
+Z32 DPx3 std 3 env 0 22 d?`1ck@NdeD@H3RZG7FgZ2
+Z33 DPx4 work 6 tb_pkg 0 22 UZ]o`?T@ABLMiJM0gh^U;2
 R2
 R3
-!i122 11
+!i122 47
 R0
-Z35 8../src/encryption_tb.vhd
-Z36 F../src/encryption_tb.vhd
+Z34 8../src/encryption_tb.vhd
+Z35 F../src/encryption_tb.vhd
 l0
-Z37 L23 1
+Z36 L23 1
 VT?O=LV?JX=2AHBlBlD@PL1
 !s100 Zo^IaGG_;ncWNoYU^3i7>3
 R6
@@ -175,44 +176,44 @@ R6
 R7
 !i10b 1
 R8
-Z38 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../src/encryption_tb.vhd|
-Z39 !s107 ../src/encryption_tb.vhd|
+Z37 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../src/encryption_tb.vhd|
+Z38 !s107 ../src/encryption_tb.vhd|
 !i113 0
 R11
 R12
 R13
 Aarch
-R22
-R31
+R21
+R30
+R32
 R33
-R34
 R2
 R3
-DEx4 work 13 encryption_tb 0 22 T?O=LV?JX=2AHBlBlD@PL1
-!i122 11
+Z39 DEx4 work 13 encryption_tb 0 22 T?O=LV?JX=2AHBlBlD@PL1
+!i122 47
 l72
-L26 125
-VSA^kU`6;3>2inFnkhNIff0
-!s100 <7^<^=KGZcMUR=25CMnHR2
+Z40 L26 125
+Z41 VSA^kU`6;3>2inFnkhNIff0
+Z42 !s100 <7^<^=KGZcMUR=25CMnHR2
 R6
 33
 R7
 !i10b 1
 R8
+R37
 R38
-R39
 !i113 0
 R11
 R12
 R13
 Efinal_round
-Z40 w1644581079
+Z43 w1644581079
 R2
 R3
-!i122 7
+!i122 43
 R0
-Z41 8../../rtl/final_round_rtl.vhd
-Z42 F../../rtl/final_round_rtl.vhd
+Z44 8../../rtl/final_round_rtl.vhd
+Z45 F../../rtl/final_round_rtl.vhd
 l0
 R18
 Vzna]eLk:lI4lY0DLCLI<60
@@ -222,20 +223,20 @@ R6
 R7
 !i10b 1
 R8
-Z43 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../../rtl/final_round_rtl.vhd|
-Z44 !s107 ../../rtl/final_round_rtl.vhd|
+Z46 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../../rtl/final_round_rtl.vhd|
+Z47 !s107 ../../rtl/final_round_rtl.vhd|
 !i113 0
 R11
 R12
 R13
 Aarch
 R14
-Z45 DEx4 work 10 shift_rows 0 22 28<4fnHKOTk57M7Ij;ZhQ1
-Z46 DEx4 work 9 sub_bytes 0 22 :6aFc9L9JLQbN7@bJZ2Zh1
+Z48 DEx4 work 10 shift_rows 0 22 28<4fnHKOTk57M7Ij;ZhQ1
+Z49 DEx4 work 9 sub_bytes 0 22 :6aFc9L9JLQbN7@bJZ2Zh1
 R2
 R3
-R28
-!i122 7
+R27
+!i122 43
 l59
 L43 83
 VW@Df4dFaZUjUJj^n:^3gz1
@@ -245,21 +246,21 @@ R6
 R7
 !i10b 1
 R8
-R43
-R44
+R46
+R47
 !i113 0
 R11
 R12
 R13
 Ekey_schedule
-Z47 w1644580602
-R22
+Z50 w1644580602
+R21
 R2
 R3
-!i122 8
+!i122 44
 R0
-Z48 8../../rtl/key_schedule_rtl.vhd
-Z49 F../../rtl/key_schedule_rtl.vhd
+Z51 8../../rtl/key_schedule_rtl.vhd
+Z52 F../../rtl/key_schedule_rtl.vhd
 l0
 L31 1
 V0WRhmjj_fH5iM[LG_D:i;1
@@ -269,19 +270,19 @@ R6
 R7
 !i10b 1
 R8
-Z50 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../../rtl/key_schedule_rtl.vhd|
-Z51 !s107 ../../rtl/key_schedule_rtl.vhd|
+Z53 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../../rtl/key_schedule_rtl.vhd|
+Z54 !s107 ../../rtl/key_schedule_rtl.vhd|
 !i113 0
 R11
 R12
 R13
 Aarch
-Z52 DEx4 work 8 sbox_lut 0 22 O4OikBj_Ca6E6V`jk3Mi;2
-R22
+Z55 DEx4 work 8 sbox_lut 0 22 O4OikBj_Ca6E6V`jk3Mi;2
+R21
 R2
 R3
-R30
-!i122 8
+R29
+!i122 44
 l73
 L54 61
 V]F7ZBd]oH2YK0YVDo`ClS2
@@ -291,21 +292,21 @@ R6
 R7
 !i10b 1
 R8
-R50
-R51
+R53
+R54
 !i113 0
 R11
 R12
 R13
 Emix_columns
-Z53 w1644580118
-R22
+Z56 w1644580118
+R21
 R2
 R3
-!i122 4
+!i122 40
 R0
-Z54 8../../rtl/mix_columns_rtl.vhd
-Z55 F../../rtl/mix_columns_rtl.vhd
+Z57 8../../rtl/mix_columns_rtl.vhd
+Z58 F../../rtl/mix_columns_rtl.vhd
 l0
 L55 1
 Vaz?=:WNEZRbdll46bddJB0
@@ -315,18 +316,18 @@ R6
 R7
 !i10b 1
 R8
-Z56 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../../rtl/mix_columns_rtl.vhd|
-Z57 !s107 ../../rtl/mix_columns_rtl.vhd|
+Z59 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../../rtl/mix_columns_rtl.vhd|
+Z60 !s107 ../../rtl/mix_columns_rtl.vhd|
 !i113 0
 R11
 R12
 R13
 Aarch
-R22
+R21
 R2
 R3
-Z58 DEx4 work 11 mix_columns 0 22 az?=:WNEZRbdll46bddJB0
-!i122 4
+Z61 DEx4 work 11 mix_columns 0 22 az?=:WNEZRbdll46bddJB0
+!i122 40
 l93
 L75 43
 V=]JKFXViGePgmEH:ALGee0
@@ -336,22 +337,22 @@ R6
 R7
 !i10b 1
 R8
-R56
-R57
+R59
+R60
 !i113 0
 R11
 R12
 R13
 Eround
-Z59 w1644579941
+Z62 w1644579941
 R2
 R3
-!i122 6
+!i122 42
 R0
-Z60 8../../rtl/round_rtl.vhd
-Z61 F../../rtl/round_rtl.vhd
+Z63 8../../rtl/round_rtl.vhd
+Z64 F../../rtl/round_rtl.vhd
 l0
-R37
+R36
 VB]`2b]CCF6MknIMRJT56l3
 !s100 o59RBj2:2bzbCa^XBF3z<0
 R6
@@ -359,22 +360,22 @@ R6
 R7
 !i10b 1
 R8
-Z62 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../../rtl/round_rtl.vhd|
-Z63 !s107 ../../rtl/round_rtl.vhd|
+Z65 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../../rtl/round_rtl.vhd|
+Z66 !s107 ../../rtl/round_rtl.vhd|
 !i113 0
 R11
 R12
 R13
 Aarch
 R14
-R22
-R58
-R45
-R46
+R21
+R61
+R48
+R49
 R2
 R3
-R29
-!i122 6
+R28
+!i122 42
 l64
 L44 103
 VXNm]jfZITaQ4gY@D31e5`0
@@ -384,20 +385,20 @@ R6
 R7
 !i10b 1
 R8
-R62
-R63
+R65
+R66
 !i113 0
 R11
 R12
 R13
 Esbox_lut
-Z64 w1644579850
+Z67 w1644579850
 R2
 R3
-!i122 1
+!i122 37
 R0
-Z65 8../../rtl/sbox_lut_rtl.vhd
-Z66 F../../rtl/sbox_lut_rtl.vhd
+Z68 8../../rtl/sbox_lut_rtl.vhd
+Z69 F../../rtl/sbox_lut_rtl.vhd
 l0
 L35 1
 VO4OikBj_Ca6E6V`jk3Mi;2
@@ -407,8 +408,8 @@ R6
 R7
 !i10b 1
 R8
-Z67 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../../rtl/sbox_lut_rtl.vhd|
-Z68 !s107 ../../rtl/sbox_lut_rtl.vhd|
+Z70 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../../rtl/sbox_lut_rtl.vhd|
+Z71 !s107 ../../rtl/sbox_lut_rtl.vhd|
 !i113 0
 R11
 R12
@@ -416,8 +417,8 @@ R13
 Aarch
 R2
 R3
-R52
-!i122 1
+R55
+!i122 37
 l44
 L42 266
 VoHmiQYNNzTH=];^aLN=GD0
@@ -427,22 +428,22 @@ R6
 R7
 !i10b 1
 R8
-R67
-R68
+R70
+R71
 !i113 0
 R11
 R12
 R13
 Eshift_rows
-Z69 w1644580676
+Z72 w1644580676
 R2
 R3
-!i122 3
+!i122 39
 R0
-Z70 8../../rtl/shift_rows_rtl.vhd
-Z71 F../../rtl/shift_rows_rtl.vhd
+Z73 8../../rtl/shift_rows_rtl.vhd
+Z74 F../../rtl/shift_rows_rtl.vhd
 l0
-R37
+R36
 V28<4fnHKOTk57M7Ij;ZhQ1
 !s100 DeZOb^j8lkIAzeUB?A0_O1
 R6
@@ -450,8 +451,8 @@ R6
 R7
 !i10b 1
 R8
-Z72 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../../rtl/shift_rows_rtl.vhd|
-Z73 !s107 ../../rtl/shift_rows_rtl.vhd|
+Z75 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../../rtl/shift_rows_rtl.vhd|
+Z76 !s107 ../../rtl/shift_rows_rtl.vhd|
 !i113 0
 R11
 R12
@@ -459,8 +460,8 @@ R13
 Aarch
 R2
 R3
-R45
-!i122 3
+R48
+!i122 39
 l45
 L43 28
 VH_Tbjd@Pz>EM5=h6<fzP71
@@ -470,20 +471,20 @@ R6
 R7
 !i10b 1
 R8
-R72
-R73
+R75
+R76
 !i113 0
 R11
 R12
 R13
 Esub_bytes
-Z74 w1644579667
+Z77 w1644579667
 R2
 R3
-!i122 2
+!i122 38
 R0
-Z75 8../../rtl/sub_bytes_rtl.vhd
-Z76 F../../rtl/sub_bytes_rtl.vhd
+Z78 8../../rtl/sub_bytes_rtl.vhd
+Z79 F../../rtl/sub_bytes_rtl.vhd
 l0
 L20 1
 V:6aFc9L9JLQbN7@bJZ2Zh1
@@ -493,18 +494,18 @@ R6
 R7
 !i10b 1
 R8
-Z77 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../../rtl/sub_bytes_rtl.vhd|
-Z78 !s107 ../../rtl/sub_bytes_rtl.vhd|
+Z80 !s90 -reportprogress|300|-2008|+cover|-work|../output/work|../../rtl/sub_bytes_rtl.vhd|
+Z81 !s107 ../../rtl/sub_bytes_rtl.vhd|
 !i113 0
 R11
 R12
 R13
 Aarch
-R52
+R55
 R2
 R3
-R46
-!i122 2
+R49
+!i122 38
 l44
 L40 32
 V:b5DA1CmeO:Nb6gEBn@_=2
@@ -514,8 +515,8 @@ R6
 R7
 !i10b 1
 R8
-R77
-R78
+R80
+R81
 !i113 0
 R11
 R12
@@ -523,11 +524,11 @@ R13
 Ptb_pkg
 R2
 R3
-!i122 10
-Z79 w1644104638
+!i122 46
+Z82 w1644104638
 R0
-Z80 8../../../common/tb_pkg.vhd
-Z81 F../../../common/tb_pkg.vhd
+Z83 8../../../common/tb_pkg.vhd
+Z84 F../../../common/tb_pkg.vhd
 l0
 L4 1
 VUZ]o`?T@ABLMiJM0gh^U;2
@@ -538,16 +539,16 @@ b1
 R7
 !i10b 1
 R8
-Z82 !s90 -reportprogress|300|-2008|-work|../output/work|../../../common/tb_pkg.vhd|
-Z83 !s107 ../../../common/tb_pkg.vhd|
+Z85 !s90 -reportprogress|300|-2008|-work|../output/work|../../../common/tb_pkg.vhd|
+Z86 !s107 ../../../common/tb_pkg.vhd|
 !i113 0
-Z84 o-2008 -work ../output/work
+Z87 o-2008 -work ../output/work
 R13
 Bbody
-R34
+R33
 R2
 R3
-!i122 10
+!i122 46
 l0
 L12 1
 VXnXAjPkHh>cTm6zJEj22f3
@@ -557,8 +558,8 @@ R6
 R7
 !i10b 1
 R8
-R82
-R83
+R85
+R86
 !i113 0
-R84
+R87
 R13

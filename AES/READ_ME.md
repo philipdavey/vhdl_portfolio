@@ -6,33 +6,57 @@ The Advanced Encryption Standard (AES) is a cryptographic algorithm used to encr
 
 ## Encryption:
 
-The AES algorithm uses a series of iterations to encrypt the plaintext into a ciphertext (and vice versa). These are known as rounds. The next stage of the AES algorithm is determined by the output of the previous round. Descriptions of the various rounds can be seen below:
+The AES algorithm uses a series of iterations to encrypt the plaintext into a ciphertext. These are known as rounds. The next stage of the AES algorithm is determined by the output of the previous round. Descriptions of the various rounds can be seen below:
 
-##### Initial Round:
+#### Initial Round:
 
 The Initial round is the Add Round Key only, and takes the plaintext and ciphertext as inputs. The output of the initial round is mapped to the input of the first main round.
 
-##### Main Round:
+#### Main Round:
 
 For each main round, there are 4 unique transformations: Sub-byte, Shift row, Mix Column and Add Round Key. A brief explanation of these can be seen below:
 
-- Sub Bytes: Each byte of data is substitured with a byte from a fixed lookup table, the Sbox.
+- Sub Bytes: Each byte of data is substituted with a byte from a fixed lookup table, the Sbox.
 
 - Shift Rows: Each row of the input is rotated by an incrementing number of bytes.
 
-- Mix Columns: Each column of the input is multiplied in Rijindael's Galois Field by a given matrix.
+- Mix Columns: Each column of the input is multiplied in Rijindael's Galois Field by the following matrix: | 02 03 01 01 |
+                                                                                                           | 01 02 03 01 |
+                                                                                                           | 01 01 02 03 |
+                                                                                                           | 03 01 01 02 |
 
 - Add Round Key: The input is XOR-ed with a unique round key. The Key Schedule is used to expand the cipher key to generate seperate round keys, which are needed to perform this function.
 
-##### Final Round:
+#### Final Round:
 
 The Final Round consists of the Sub Bytes, Shift Rows and Add Round Key operations. The Final Round outputs the Ciphertext.
 
-##### Block Diagram:
+#### Block Diagram:
 
 ![Encryption Block Diagram:](docs/diagrams/encryption.png)
 
-#### Decryption:
+## Decryption:
+
+This process decrypts the ciphertext back into its original plaintext. Descriptions of the various rounds used during Decryption can be seen below:
+
+#### Inverse Initial Round:
+
+Similar to Encryption, the Initial Round is the Add Round Key operation only.
+
+#### Inverse Main Round:
+
+The Inverse Main Round uses the inverse of the transformations in the Encryption process. A brief explanation of these can be seen below:
+
+- Inverse Sub Bytes: Each byte of data is substituted with a byte from a fixed lookup table, the Inverse Sbox.
+
+- Inverse Shift Rows: Each row of the input is rotated by an incrementing number of bytes.
+
+- Inverse Mix Columns: Each column of the input is multiplied in Rijindael's Galois Field by the following matrix: | 0E 0B 0D 09 |
+                                                                                                                   | 09 0E 0B 0D |
+                                                                                                                   | 0D 09 0E 0B |
+                                                                                                                   | 0B 0D 09 0E |
+
+- Add Round Key: The input is XOR-ed with a unique round key. The Key Schedule is used to expand the cipher key to generate seperate round keys, which are needed to perform this function.
 
 ![Decryption Block Diagram:](docs/diagrams/decryption.png)
 
