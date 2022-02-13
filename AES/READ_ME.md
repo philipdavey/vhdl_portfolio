@@ -22,7 +22,7 @@ For each main round, there are 4 unique transformations: Sub-byte, Shift row, Mi
 
 - Mix Columns: Each column of the input is multiplied in Rijindael's Galois Field by a given matrix.
 
-- Add Round Key: The input is XOR-ed with a unique round key. The Key Schedule is used to expand the cipher key to generate seperate round keys, which are needed to perform this function.
+- Add Round Key: The input is XOR-ed with a unique round key. The Key Schedule is used to expand the cipher key to generate seperate Round Keys, which are needed to perform this function.
 
 #### Final Round:
 
@@ -34,7 +34,7 @@ The Final Round consists of the Sub Bytes, Shift Rows and Add Round Key operatio
 
 ## Decryption:
 
-This process decrypts the ciphertext back into its original plaintext. Descriptions of the various rounds used during Decryption can be seen below:
+This process decrypts the ciphertext back into its original plaintext. The Decryption process uses the inverse operations of those mentioned in Encryption. The Round Keys are also used in an opposite order to that of Encryption. Descriptions of the various rounds used during Decryption can be seen below:
 
 #### Inverse Initial Round:
 
@@ -42,12 +42,12 @@ Similar to Encryption, the Initial Round is the Add Round Key operation only.
 
 #### Inverse Main Round:
 
-The Inverse Main Round uses the inverse of the transformations in the Encryption process and uses the following operations:
+The Inverse Main Round uses the inverse of the transformations in the Encryption process. These operations are also used in the following order:
 
+- Inverse Shift Rows 
 - Inverse Sub Bytes
-- Inverse Shift Rows
-- Inverse Mix Columns
 - Add Round Key
+- Inverse Mix Columns
 
 #### Inverse Final Round:
 
