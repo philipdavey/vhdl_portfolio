@@ -118,7 +118,7 @@ BEGIN
 
         IF (TC_01 = '1') THEN
             WAIT UNTIL RISING_EDGE(CLK);
-            input_en   <= '1';             -- Assert Input Enable.
+            input_en   <= '1';          -- Assert Input Enable.
             plain_text <= data_in;      -- Input Plain Text.
             cipher_key <= round_key_in; -- Input Cipher Key.
             WAIT UNTIL RISING_EDGE(CLK);

@@ -39,7 +39,6 @@ ENTITY decryption IS
         --------------------------------------------------
         OUTPUT_EN   : OUT STD_LOGIC;
         PLAIN_TEXT  : OUT STD_LOGIC_VECTOR(127 DOWNTO 0)
-        
     );
 END decryption;
 
