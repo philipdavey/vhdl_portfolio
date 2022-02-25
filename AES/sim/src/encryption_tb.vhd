@@ -29,8 +29,8 @@ ARCHITECTURE arch OF encryption_tb IS
 ----------------------------------
 CONSTANT TIME_PERIOD_c : time := 10 ns;
 
-CONSTANT TC_01         : STD_LOGIC := '1';
-CONSTANT TC_02         : STD_LOGIC := '0';
+CONSTANT TC_01         : STD_LOGIC := '1'; -- Full Encryption, self check output of each round.
+CONSTANT TC_02         : STD_LOGIC := '0'; -- Pipeline test.
 
 ----------------------------------
 -- UUT Signals Defined:
@@ -48,26 +48,30 @@ SIGNAL output_en   : STD_LOGIC;
 SIGNAL cipher_text : STD_LOGIC_VECTOR(127 DOWNTO 0);
 
 ----------------------------------
--- Inputs:
+-- Stimulus:
 ----------------------------------
 
-CONSTANT data_in : STD_LOGIC_VECTOR(127 DOWNTO 0) := x"32_88_31_E0_43_5A_31_37_F6_30_98_07_A8_8D_A2_34";
+TYPE DATA_ARRAY IS ARRAY (INTEGER RANGE <>) OF STD_LOGIC_VECTOR(127 DOWNTO 0);
 
-CONSTANT round_key_in : STD_LOGIC_VECTOR(127 DOWNTO 0) := x"2B_28_AB_09_7E_AE_F7_CF_15_D2_15_4F_16_A6_88_3C";
+CONSTANT stim_plaintext : DATA_ARRAY(0 TO 1) := (x"328831E0435A3137F6309807A88DA234",
+                                                 x"004488CC115599DD2266AAEE3377BBFF");
 
-TYPE EXP_DATA_ARRAY IS ARRAY (0 TO 10) OF STD_LOGIC_VECTOR(127 DOWNTO 0);
+CONSTANT stim_cipherkey : DATA_ARRAY(0 TO 1) := (x"2B28AB097EAEF7CF15D2154F16A6883C",
+                                                 x"0004080C0105090D02060A0E03070B0F");
 
-CONSTANT exp_round_data  : EXP_DATA_ARRAY := (x"19_A0_9A_E9_3D_F4_C6_F8_E3_E2_8D_48_BE_2B_2A_08",
-                                              x"A4_68_6B_02_9C_9F_5B_6A_7F_35_EA_50_F2_2B_43_49",
-                                              x"AA_61_82_68_8F_DD_D2_32_5F_E3_4A_46_03_EF_D2_9A",
-                                              x"48_67_4D_D6_6C_1D_E3_5F_4E_9D_B1_58_EE_0D_38_E7",
-                                              x"E0_C8_D9_85_92_63_B1_B8_7F_63_35_BE_E8_C0_50_01",
-                                              x"F1_C1_7C_5D_00_92_C8_B5_6F_4C_8B_D5_55_EF_32_0C",
-                                              x"26_3D_E8_FD_0E_41_64_D2_2E_B7_72_8B_17_7D_A9_25",
-                                              x"5A_19_A3_7A_41_49_E0_8C_42_DC_19_04_B1_1F_65_0C",
-                                              x"EA_04_65_85_83_45_5D_96_5C_33_98_B0_F0_2D_AD_C5",
-                                              x"EB_59_8B_1B_40_2E_A1_C3_F2_38_13_42_1E_84_E7_D2",
-                                              x"39_02_DC_19_25_DC_11_6A_84_09_85_0B_1D_FB_97_32");
+CONSTANT exp_ciphertext : DATA_ARRAY(0 TO 1) := (x"3902DC1925DC116A8409850B1DFB9732",
+                                                 x"696AD870C47BCDB4E004B7C5D830805A");
+
+CONSTANT exp_round_data : DATA_ARRAY(0 TO 9) := (x"19A09AE93DF4C6F8E3E28D48BE2B2A08",
+                                                 x"A4686B029C9F5B6A7F35EA50F22B4349",
+                                                 x"AA6182688FDDD2325FE34A4603EFD29A",
+                                                 x"48674DD66C1DE35F4E9DB158EE0D38E7",
+                                                 x"E0C8D9859263B1B87F6335BEE8C05001",
+                                                 x"F1C17C5D0092C8B56F4C8BD555EF320C",
+                                                 x"263DE8FD0E4164D22EB7728B177DA925",
+                                                 x"5A19A37A4149E08C42DC1904B11F650C",
+                                                 x"EA04658583455D965C3398B0F02DADC5",
+                                                 x"EB598B1B402EA1C3F23813421E84E7D2");
 
 BEGIN
 
@@ -111,40 +115,68 @@ BEGIN
         WAIT FOR TIME_PERIOD_c*5;
         rst_n <= '1';
 
-        input_en <= '0';
+        input_en   <= '0';
         cipher_key <= (OTHERS => '0');
 
         WAIT UNTIL RISING_EDGE(CLK);
 
         IF (TC_01 = '1') THEN
             WAIT UNTIL RISING_EDGE(CLK);
-            input_en   <= '1';          -- Assert Input Enable.
-            plain_text <= data_in;      -- Input Plain Text.
-            cipher_key <= round_key_in; -- Input Cipher Key.
+            input_en   <= '1';            -- Assert Input Enable.
+            plain_text <= stim_plaintext; -- Input Plain Text.
+            cipher_key <= stim_cipherkey; -- Input Cipher Key.
             WAIT UNTIL RISING_EDGE(CLK);
             input_en   <= '0';
             plain_text <= (OTHERS => '0');
             cipher_key <= (OTHERS => '0');
 
             FOR i IN EXP_DATA_ARRAY'LOW TO EXP_DATA_ARRAY'HIGH -1 LOOP
-
                 WAIT UNTIL ext_round_en(i) = '1';
                 self_check_vector("Round " & to_string(i), ext_round_data(i), exp_round_data(i));
             END LOOP;
 
             WAIT UNTIL output_en = '1';
     
-            self_check_vector("Ciphertext", cipher_text, exp_round_data(10));
+            self_check_vector("Ciphertext", cipher_text, exp_ciphertext(0));
+        END IF;
 
-            WAIT FOR 50 ns;
+        IF (TC_02 = '1') THEN
+            WAIT UNTIL RISING_EDGE(CLK);
+            input_en   <= '1';               -- Assert Input Enable.
+            plain_text <= stim_plaintext(0); -- Input Plain Text.
+            cipher_key <= stim_cipherkey(0);    -- Input Cipher Key.
+            WAIT UNTIL RISING_EDGE(CLK);
+            input_en   <= '0';
+            plain_text <= (OTHERS => '0');
+            cipher_key <= (OTHERS => '0');
 
-            report "Calling 'stop'";
-            STOP;
+            FOR i IN 0 TO 2 LOOP
+               WAIT UNTIL RISING_EDGE(CLK);
+            END LOOP;
 
+            input_en   <= '1';               -- Assert Input Enable.
+            plain_text <= stim_plaintext(1); -- Input Plain Text.
+            cipher_key <= stim_cipherkey(1);    -- Input Cipher Key.
+            WAIT UNTIL RISING_EDGE(CLK);
+            input_en   <= '0';
+            plain_text <= (OTHERS => '0');
+            cipher_key <= (OTHERS => '0');
+
+            WAIT UNTIL output_en = '1';
+    
+            self_check_vector("Ciphertext", cipher_text, exp_ciphertext(0));
+
+            WAIT UNTIL output_en = '1';
+    
+            self_check_vector("Ciphertext", cipher_text, exp_ciphertext(1));
 
         END IF;
 
-        WAIT;
+        WAIT FOR 50 ns;
+
+        report "Calling 'stop'";
+        STOP;
+
     END PROCESS stim_i;
 
-END arch ;
+END arch;
