@@ -123,14 +123,14 @@ BEGIN
         IF (TC_01 = '1') THEN
             WAIT UNTIL RISING_EDGE(CLK);
             input_en   <= '1';            -- Assert Input Enable.
-            plain_text <= stim_plaintext; -- Input Plain Text.
-            cipher_key <= stim_cipherkey; -- Input Cipher Key.
+            plain_text <= stim_plaintext(0); -- Input Plain Text.
+            cipher_key <= stim_cipherkey(0); -- Input Cipher Key.
             WAIT UNTIL RISING_EDGE(CLK);
             input_en   <= '0';
             plain_text <= (OTHERS => '0');
             cipher_key <= (OTHERS => '0');
 
-            FOR i IN EXP_DATA_ARRAY'LOW TO EXP_DATA_ARRAY'HIGH -1 LOOP
+            FOR i IN exp_round_data'LOW TO exp_round_data'HIGH -1 LOOP
                 WAIT UNTIL ext_round_en(i) = '1';
                 self_check_vector("Round " & to_string(i), ext_round_data(i), exp_round_data(i));
             END LOOP;

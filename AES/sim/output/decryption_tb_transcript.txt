@@ -1,0 +1,107 @@
+# ** Note: PASS : Round 0
+#    Time: 185 ns  Iteration: 2  Instance: /decryption_tb
+# ** Note: PASS : Round 1
+#    Time: 225 ns  Iteration: 2  Instance: /decryption_tb
+# ** Note: PASS : Round 2
+#    Time: 265 ns  Iteration: 2  Instance: /decryption_tb
+# ** Note: PASS : Round 3
+#    Time: 305 ns  Iteration: 2  Instance: /decryption_tb
+# ** Note: PASS : Round 4
+#    Time: 345 ns  Iteration: 2  Instance: /decryption_tb
+# ** Note: PASS : Round 5
+#    Time: 385 ns  Iteration: 2  Instance: /decryption_tb
+# ** Note: PASS : Round 6
+#    Time: 425 ns  Iteration: 2  Instance: /decryption_tb
+# ** Note: PASS : Round 7
+#    Time: 465 ns  Iteration: 2  Instance: /decryption_tb
+# ** Note: PASS : Round 8
+#    Time: 505 ns  Iteration: 2  Instance: /decryption_tb
+# ** Note: PASS : Round 9
+#    Time: 545 ns  Iteration: 2  Instance: /decryption_tb
+# ** Note: PASS : Plain Text
+#    Time: 575 ns  Iteration: 2  Instance: /decryption_tb
+# ** Note: Calling 'stop'
+#    Time: 625 ns  Iteration: 0  Instance: /decryption_tb
+# Break in Process stim_i at ../src/decryption_tb.vhd line 142
+# End time: 11:20:25 on Feb 27,2022, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 0
+do aes_coverage.do
+# QuestaSim-64 vcover 2021.1 Coverage Utility 2021.01 Jan 19 2021
+# Start time: 11:20:29 on Feb 27,2022
+# vcover merge ../output/aes_cov_combined.ucdb ../output/cov_round_tb.ucdb ../output/cov_encryption_tb.ucdb ../output/cov_inv_round_tb.ucdb ../output/cov_decryption_tb.ucdb 
+# QuestaSim-64 vcover 2021.1 Coverage Utility 2021.01 Jan 19 2021
+# Merging file ../output/cov_round_tb.ucdb
+# Merging file ../output/cov_encryption_tb.ucdb
+# Merging file ../output/cov_inv_round_tb.ucdb
+# Merging file ../output/cov_decryption_tb.ucdb
+# Writing merged result to ../output/aes_cov_combined.ucdb
+# 
+# End time: 11:20:29 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# coverage read -dataset aes_cov_combined6 ../output/aes_cov_combined.ucdb
+# ../output/aes_cov_combined.ucdb opened as coverage dataset "aes_cov_combined6"
+# *** Warning: No matching item found for '../output/aes_cov_overall.txt'.
+# ** UI-Msg: (vish-17388) No matching coverage data found.
+# 
+# *** Warning: No matching item found for '../output/cov_round_rtl.txt'.
+# ** UI-Msg: (vish-17388) No matching coverage data found.
+# 
+# *** Warning: No matching item found for '../output/cov_inv_round_rtl.txt'.
+# ** UI-Msg: (vish-17388) No matching coverage data found.
+# 
+# *** Warning: No matching item found for '../output/cov_encryption_rtl.txt'.
+# ** UI-Msg: (vish-17388) No matching coverage data found.
+# 
+# *** Warning: No matching item found for '../output/cov_decryption_rtl.txt'.
+# ** UI-Msg: (vish-17388) No matching coverage data found.
+# 
+do aes_coverage.do
+# QuestaSim-64 vcover 2021.1 Coverage Utility 2021.01 Jan 19 2021
+# Start time: 11:22:49 on Feb 27,2022
+# vcover merge ../output/aes_cov_combined.ucdb ../output/cov_round_tb.ucdb ../output/cov_encryption_tb.ucdb ../output/cov_inv_round_tb.ucdb ../output/cov_decryption_tb.ucdb 
+# QuestaSim-64 vcover 2021.1 Coverage Utility 2021.01 Jan 19 2021
+# Merging file ../output/cov_round_tb.ucdb
+# Merging file ../output/cov_encryption_tb.ucdb
+# Merging file ../output/cov_inv_round_tb.ucdb
+# Merging file ../output/cov_decryption_tb.ucdb
+# Writing merged result to ../output/aes_cov_combined.ucdb
+# 
+# End time: 11:22:49 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# coverage read -dataset aes_cov_combined7 ../output/aes_cov_combined.ucdb
+# ../output/aes_cov_combined.ucdb opened as coverage dataset "aes_cov_combined7"
+# ** UI-Msg: (vish-17388) No matching coverage data found.
+# 
+# ** UI-Msg: (vish-17388) No matching coverage data found.
+# 
+# ** UI-Msg: (vish-17388) No matching coverage data found.
+# 
+# ** UI-Msg: (vish-17388) No matching coverage data found.
+# 
+# ** UI-Msg: (vish-17388) No matching coverage data found.
+# 
+do aes_coverage.do
+# QuestaSim-64 vcover 2021.1 Coverage Utility 2021.01 Jan 19 2021
+# Start time: 11:23:00 on Feb 27,2022
+# vcover merge ../output/aes_cov_combined.ucdb ../output/cov_round_tb.ucdb ../output/cov_encryption_tb.ucdb ../output/cov_inv_round_tb.ucdb ../output/cov_decryption_tb.ucdb 
+# QuestaSim-64 vcover 2021.1 Coverage Utility 2021.01 Jan 19 2021
+# Merging file ../output/cov_round_tb.ucdb
+# Merging file ../output/cov_encryption_tb.ucdb
+# Merging file ../output/cov_inv_round_tb.ucdb
+# Merging file ../output/cov_decryption_tb.ucdb
+# Writing merged result to ../output/aes_cov_combined.ucdb
+# 
+# End time: 11:23:00 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# coverage read -dataset aes_cov_combined8 ../output/aes_cov_combined.ucdb
+# ../output/aes_cov_combined.ucdb opened as coverage dataset "aes_cov_combined8"
+# ** UI-Msg: (vish-17388) No matching coverage data found.
+# 
+# ** UI-Msg: (vish-17388) No matching coverage data found.
+# 
+# ** UI-Msg: (vish-17388) No matching coverage data found.
+# 
+# ** UI-Msg: (vish-17388) No matching coverage data found.
+# 
+# ** UI-Msg: (vish-17388) No matching coverage data found.
+# 

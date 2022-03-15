@@ -1,0 +1,207 @@
+# ** Note: PASS : Round 0
+#    Time: 75 ns  Iteration: 2  Instance: /encryption_tb
+# ** Note: PASS : Round 1
+#    Time: 115 ns  Iteration: 2  Instance: /encryption_tb
+# ** Note: PASS : Round 2
+#    Time: 155 ns  Iteration: 2  Instance: /encryption_tb
+# ** Note: PASS : Round 3
+#    Time: 195 ns  Iteration: 2  Instance: /encryption_tb
+# ** Note: PASS : Round 4
+#    Time: 235 ns  Iteration: 2  Instance: /encryption_tb
+# ** Note: PASS : Round 5
+#    Time: 275 ns  Iteration: 2  Instance: /encryption_tb
+# ** Note: PASS : Round 6
+#    Time: 315 ns  Iteration: 2  Instance: /encryption_tb
+# ** Note: PASS : Round 7
+#    Time: 355 ns  Iteration: 2  Instance: /encryption_tb
+# ** Note: PASS : Round 8
+#    Time: 395 ns  Iteration: 2  Instance: /encryption_tb
+# ** Note: PASS : Ciphertext
+#    Time: 465 ns  Iteration: 2  Instance: /encryption_tb
+# ** Note: Calling 'stop'
+#    Time: 515 ns  Iteration: 0  Instance: /encryption_tb
+# Break in Process stim_i at ../src/encryption_tb.vhd line 178
+# End time: 11:20:18 on Feb 27,2022, Elapsed time: 0:00:07
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vcom 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 11:20:18 on Feb 27,2022
+# vcom -reportprogress 300 -2008 -work ../output/work ../../rtl/aes_pkg.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling package aes_pkg
+# -- Compiling package body aes_pkg
+# -- Loading package aes_pkg
+# End time: 11:20:18 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vcom 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 11:20:18 on Feb 27,2022
+# vcom -reportprogress 300 -2008 -work ../output/work ../../rtl/sbox_lut_rtl.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity sbox_lut
+# -- Compiling architecture arch of sbox_lut
+# End time: 11:20:18 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vcom 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 11:20:18 on Feb 27,2022
+# vcom -reportprogress 300 -2008 -work ../output/work ../../rtl/inv_sbox_lut_rtl.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity inv_sbox_lut
+# -- Compiling architecture arch of inv_sbox_lut
+# End time: 11:20:18 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vcom 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 11:20:18 on Feb 27,2022
+# vcom -reportprogress 300 -2008 "+cover=bs" -coverexcludedefault -work ../output/work ../../rtl/inv_sub_bytes_rtl.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity inv_sub_bytes
+# -- Compiling architecture arch of inv_sub_bytes
+# -- Loading entity inv_sbox_lut
+# End time: 11:20:18 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vcom 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 11:20:18 on Feb 27,2022
+# vcom -reportprogress 300 -2008 "+cover=bs" -coverexcludedefault -work ../output/work ../../rtl/inv_shift_rows_rtl.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity inv_shift_rows
+# -- Compiling architecture arch of inv_shift_rows
+# End time: 11:20:18 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vcom 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 11:20:18 on Feb 27,2022
+# vcom -reportprogress 300 -2008 "+cover=bs" -coverexcludedefault -work ../output/work ../../rtl/inv_mix_columns_rtl.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package aes_pkg
+# -- Compiling entity inv_mix_columns
+# -- Compiling architecture arch of inv_mix_columns
+# End time: 11:20:18 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vcom 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 11:20:18 on Feb 27,2022
+# vcom -reportprogress 300 -2008 "+cover=bs" -coverexcludedefault -work ../output/work ../../rtl/add_roundkey_rtl.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity add_roundkey
+# -- Compiling architecture arch of add_roundkey
+# End time: 11:20:18 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vcom 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 11:20:18 on Feb 27,2022
+# vcom -reportprogress 300 -2008 "+cover=bs" -coverexcludedefault -work ../output/work ../../rtl/inv_round_rtl.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity inv_round
+# -- Compiling architecture arch of inv_round
+# -- Loading entity inv_shift_rows
+# -- Loading entity inv_sub_bytes
+# -- Loading entity add_roundkey
+# -- Loading package aes_pkg
+# -- Loading entity inv_mix_columns
+# End time: 11:20:18 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vcom 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 11:20:18 on Feb 27,2022
+# vcom -reportprogress 300 -2008 "+cover=bs" -coverexcludedefault -work ../output/work ../../rtl/inv_final_round_rtl.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling entity inv_final_round
+# -- Compiling architecture arch of inv_final_round
+# -- Loading entity inv_sub_bytes
+# -- Loading entity inv_shift_rows
+# -- Loading entity add_roundkey
+# End time: 11:20:18 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vcom 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 11:20:18 on Feb 27,2022
+# vcom -reportprogress 300 -2008 "+cover=bs" -coverexcludedefault -work ../output/work ../../rtl/key_schedule_rtl.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package aes_pkg
+# -- Compiling entity key_schedule
+# -- Compiling architecture arch of key_schedule
+# -- Loading entity sbox_lut
+# End time: 11:20:18 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vcom 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 11:20:18 on Feb 27,2022
+# vcom -reportprogress 300 -2008 "+cover=bs" -coverexcludedefault -work ../output/work ../../rtl/decryption_rtl.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package aes_pkg
+# -- Compiling entity decryption
+# -- Compiling architecture arch of decryption
+# -- Loading entity key_schedule
+# -- Loading entity add_roundkey
+# -- Loading entity inv_round
+# -- Loading entity inv_final_round
+# End time: 11:20:18 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vcom 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 11:20:18 on Feb 27,2022
+# vcom -reportprogress 300 -2008 -work ../output/work ../../../common/tb_pkg.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Compiling package tb_pkg
+# -- Compiling package body tb_pkg
+# -- Loading package tb_pkg
+# End time: 11:20:18 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# QuestaSim-64 vcom 2021.1 Compiler 2021.01 Jan 19 2021
+# Start time: 11:20:18 on Feb 27,2022
+# vcom -reportprogress 300 -2008 -work ../output/work ../src/decryption_tb.vhd 
+# -- Loading package STANDARD
+# -- Loading package TEXTIO
+# -- Loading package std_logic_1164
+# -- Loading package tb_pkg
+# -- Loading package ENV
+# -- Compiling entity decryption_tb
+# -- Compiling architecture arch of decryption_tb
+# -- Loading package aes_pkg
+# -- Loading entity decryption
+# End time: 11:20:18 on Feb 27,2022, Elapsed time: 0:00:00
+# Errors: 0, Warnings: 0
+# vsim -voptargs="+acc" ../output/work.decryption_tb 
+# Start time: 11:20:18 on Feb 27,2022
+# ** Note: (vsim-3812) Design is being optimized...
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading work.tb_pkg(body)
+# Loading std.env(body)
+# Loading work.aes_pkg(body)
+# Loading work.decryption_tb(arch)#1
+# Loading work.decryption(arch)#1
+# Loading work.key_schedule(arch)#1
+# Loading work.sbox_lut(arch)#1
+# Loading work.key_schedule(arch)#2
+# Loading work.key_schedule(arch)#3
+# Loading work.key_schedule(arch)#4
+# Loading work.key_schedule(arch)#5
+# Loading work.key_schedule(arch)#6
+# Loading work.key_schedule(arch)#7
+# Loading work.key_schedule(arch)#8
+# Loading work.key_schedule(arch)#9
+# Loading work.key_schedule(arch)#10
+# Loading work.add_roundkey(arch)#1
+# Loading work.inv_round(arch)#1
+# Loading work.inv_shift_rows(arch)#1
+# Loading work.inv_sub_bytes(arch)#1
+# Loading work.inv_sbox_lut(arch)#1
+# Loading work.inv_mix_columns(arch)#1
+# Loading work.inv_final_round(arch)#1

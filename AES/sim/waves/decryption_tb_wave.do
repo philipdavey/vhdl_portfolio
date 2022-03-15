@@ -60,9 +60,9 @@ add wave -noupdate -group {Final Round} /decryption_tb/UUT/final_round_i/ROUND_K
 add wave -noupdate -group {Final Round} /decryption_tb/UUT/final_round_i/OUTPUT_EN
 add wave -noupdate -group {Final Round} /decryption_tb/UUT/final_round_i/OUTPUT_DATA
 add wave -noupdate /decryption_tb/UUT/OUTPUT_EN
-add wave -noupdate /decryption_tb/UUT/CIPHER_TEXT
+add wave -noupdate /decryption_tb/UUT/PLAIN_TEXT
 TreeUpdate [SetDefaultTree]
-WaveRestoreCursors {{Cursor 1} {82 ns} 0}
+WaveRestoreCursors {{Cursor 1} {65 ns} 0}
 quietly wave cursor active 1
 configure wave -namecolwidth 150
 configure wave -valuecolwidth 100
